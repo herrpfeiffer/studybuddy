@@ -1,0 +1,383 @@
+{
+  "weekId": "week-01",
+  "title": "Week 1: Properties of Equality & Explorations",
+  "dateRange": "Week of September 14-20",
+  "estimatedMinutes": 30,
+  "stations": [
+    {
+      "id": "math",
+      "title": "Math: Properties of Equality",
+      "subject": "Math",
+      "conceptTags": ["properties-of-equality", "addition-property", "subtraction-property", "equation-solving", "substitution-check"],
+      "estimatedMinutes": 12,
+      "problems": [
+        {
+          "id": "math-1",
+          "tier": 1,
+          "type": "equality-reasoning",
+          "prompt": "Two equations are written on the board:\n\n**Equation A:** x + 7 = 12\n\n**Equation B:** x + 7 - 7 = 12 - 7\n\nA student claims Equation B is \"a different problem\" because the numbers look different.\n\n**Part 1:** Are A and B equivalent? Explain your reasoning without solving for x first.\n\n**Part 2:** Find x and check by substitution in BOTH equations.",
+          "parts": [
+            {
+              "partId": "reasoning",
+              "question": "Are equations A and B equivalent? Why or why not?",
+              "type": "text",
+              "validation": {
+                "keywords": ["equivalent", "same", "equal", "both sides", "subtract"],
+                "minLength": 20
+              },
+              "hint": "Think about what happens when you do the same operation to both sides of an equation.",
+              "correctAnswer": "Yes, they are equivalent. The subtraction property of equality says if you subtract the same value from both sides of an equation, the equations have the same solution. Subtracting 7 from both sides keeps the truth about x unchanged."
+            },
+            {
+              "partId": "solve",
+              "question": "Solve for x:",
+              "type": "numeric",
+              "correctAnswer": 5,
+              "validation": {
+                "type": "exact"
+              },
+              "hint": "Simplify equation B: x + 7 - 7 = 12 - 7. What does the left side become?"
+            },
+            {
+              "partId": "check",
+              "question": "Check your answer by substituting x into both equations. Does it work?",
+              "type": "text",
+              "validation": {
+                "keywords": ["5 + 7 = 12", "true", "works", "check"],
+                "minLength": 10
+              },
+              "correctAnswer": "Equation A: 5 + 7 = 12 ✓\nEquation B: 5 = 5 ✓\nBoth are true!"
+            }
+          ],
+          "enrichment": "Challenge: Create your own pair of equivalent equations where you multiply or divide both sides by the same number."
+        },
+        {
+          "id": "math-2",
+          "tier": 1,
+          "type": "fill-blank-solve",
+          "prompt": "Fill the blank with a number that keeps the equation **equivalent**, then solve and check by substitution:\n\nn - 9 = 4\n\nAdd the **same** value to both sides so the left side becomes just n.",
+          "parts": [
+            {
+              "partId": "value",
+              "question": "What value should you add to both sides?",
+              "type": "numeric",
+              "correctAnswer": 9,
+              "hint": "What operation will undo 'minus 9'?"
+            },
+            {
+              "partId": "why",
+              "question": "Why must both sides get that same value?",
+              "type": "text",
+              "validation": {
+                "keywords": ["equal", "same", "both", "equivalence", "balance"],
+                "minLength": 15
+              },
+              "correctAnswer": "Both sides must get the same value to preserve equivalence. The addition property of equality requires equal changes on both sides to keep the equation true."
+            },
+            {
+              "partId": "solve",
+              "question": "Solve for n:",
+              "type": "numeric",
+              "correctAnswer": 13
+            },
+            {
+              "partId": "check",
+              "question": "Check by substitution:",
+              "type": "text",
+              "validation": {
+                "keywords": ["13", "9", "4", "true"],
+                "minLength": 5
+              },
+              "correctAnswer": "13 - 9 = 4 ✓"
+            }
+          ]
+        },
+        {
+          "id": "math-3",
+          "tier": 2,
+          "type": "balance-scale",
+          "prompt": "A balance scale is even with \"mystery bag m\" plus 5 unit weights on the left, and 18 unit weights on the right.\n\nSomeone removes 5 unit weights from the **left only**.",
+          "parts": [
+            {
+              "partId": "balanced",
+              "question": "Is the scale still balanced? Why or why not?",
+              "type": "multiple-choice",
+              "options": [
+                "Yes, because we removed weights",
+                "No, because we only changed one side",
+                "Yes, because the mystery bag is still there",
+                "No, because 5 is too many"
+              ],
+              "correctAnswer": 1,
+              "explanation": "No! The scale is NOT balanced. You changed one side without changing the other, so equivalence is broken."
+            },
+            {
+              "partId": "starting-equation",
+              "question": "Write the starting equation:",
+              "type": "text",
+              "validation": {
+                "keywords": ["m", "5", "18", "+", "="],
+                "minLength": 5
+              },
+              "correctAnswer": "m + 5 = 18",
+              "hint": "Mystery bag m plus 5 weights equals 18 weights on the other side."
+            },
+            {
+              "partId": "correct-next",
+              "question": "Write the CORRECT next equation if you want both sides to stay equal:",
+              "type": "text",
+              "validation": {
+                "keywords": ["m", "13", "="],
+                "minLength": 5
+              },
+              "correctAnswer": "m + 5 - 5 = 18 - 5 OR m = 13",
+              "hint": "Subtract 5 from BOTH sides."
+            },
+            {
+              "partId": "solve",
+              "question": "Solve for m:",
+              "type": "numeric",
+              "correctAnswer": 13
+            },
+            {
+              "partId": "check",
+              "question": "Check by substitution:",
+              "type": "text",
+              "validation": {
+                "keywords": ["13", "5", "18"],
+                "minLength": 5
+              },
+              "correctAnswer": "13 + 5 = 18 ✓"
+            }
+          ],
+          "enrichment": "Real-world connection: How is solving an equation like keeping a teeter-totter balanced?"
+        },
+        {
+          "id": "math-4",
+          "tier": 2,
+          "type": "error-analysis",
+          "prompt": "Jamie and Sam each start with the same true equation: y + 11 = 20\n\n- **Jamie** subtracts 11 from both sides.\n- **Sam** subtracts 11 from the left and subtracts 9 from the right \"to make the right side nicer.\"",
+          "parts": [
+            {
+              "partId": "who-correct",
+              "question": "Who preserved equivalence?",
+              "type": "multiple-choice",
+              "options": ["Jamie", "Sam", "Both", "Neither"],
+              "correctAnswer": 0,
+              "explanation": "Jamie preserved equivalence by subtracting 11 from BOTH sides."
+            },
+            {
+              "partId": "who-broke",
+              "question": "Who broke equivalence?",
+              "type": "multiple-choice",
+              "options": ["Jamie", "Sam", "Both", "Neither"],
+              "correctAnswer": 1,
+              "explanation": "Sam broke equivalence by subtracting different amounts from each side (11 left, 9 right)."
+            },
+            {
+              "partId": "fix",
+              "question": "Fix the broken path so it becomes equivalent again:",
+              "type": "text",
+              "validation": {
+                "keywords": ["subtract", "11", "both", "9"],
+                "minLength": 10
+              },
+              "correctAnswer": "Subtract 11 from both sides (or any equal amount from both): y + 11 - 11 = 20 - 11",
+              "hint": "What's the rule about changing both sides?"
+            },
+            {
+              "partId": "solve",
+              "question": "Solve for y:",
+              "type": "numeric",
+              "correctAnswer": 9
+            },
+            {
+              "partId": "check",
+              "question": "Check in the original equation:",
+              "type": "text",
+              "validation": {
+                "keywords": ["9", "11", "20"],
+                "minLength": 5
+              },
+              "correctAnswer": "9 + 11 = 20 ✓"
+            }
+          ],
+          "enrichment": "Create your own 'wrong path' problem where someone makes an unequal change to both sides. Then show the correct path!"
+        },
+        {
+          "id": "math-5",
+          "tier": 3,
+          "type": "spot-the-oops",
+          "prompt": "Spot the oops (then fix it).\n\nSomeone starts with this true equation:\n\nk + 6 = 15\n\nThey write this next step:\n\nk = 15 - 4",
+          "parts": [
+            {
+              "partId": "allowed",
+              "question": "Is that next step allowed? Why or why not?",
+              "type": "text",
+              "validation": {
+                "keywords": ["no", "not allowed", "different", "both sides", "6", "4"],
+                "minLength": 20
+              },
+              "correctAnswer": "No, it's not allowed. The left side had 6 subtracted to isolate k, but the right side subtracted 4 instead. The subtraction property requires the SAME change on both sides. Unequal changes break equivalence.",
+              "hint": "Look at what was subtracted from each side. Are they the same?"
+            },
+            {
+              "partId": "correct-step",
+              "question": "Write a correct next step using subtraction (or addition) the fair way:",
+              "type": "text",
+              "validation": {
+                "keywords": ["6", "both", "subtract", "-"],
+                "minLength": 10
+              },
+              "correctAnswer": "k + 6 - 6 = 15 - 6",
+              "hint": "Subtract 6 from BOTH sides."
+            },
+            {
+              "partId": "solve",
+              "question": "Finish solving for k:",
+              "type": "numeric",
+              "correctAnswer": 9
+            },
+            {
+              "partId": "check",
+              "question": "Check by substituting back into k + 6 = 15:",
+              "type": "text",
+              "validation": {
+                "keywords": ["9", "6", "15"],
+                "minLength": 5
+              },
+              "correctAnswer": "9 + 6 = 15 ✓"
+            }
+          ],
+          "enrichment": "Challenge boost: Invent a DIFFERENT 'oops' equation of your own, then fix it the same way!"
+        }
+      ]
+    },
+    {
+      "id": "stem",
+      "title": "STEM: Future Cities",
+      "subject": "STEM",
+      "conceptTags": ["urban-planning", "sustainability", "15-minute-city", "community-design"],
+      "estimatedMinutes": 5,
+      "content": {
+        "type": "exploration",
+        "introduction": "What if you could walk or bike to school, the library, a park, and the grocery store in just 15 minutes? That's the idea behind the '15-minute city' — neighborhoods designed so everything you need is close by.",
+        "mediaReference": "Realtopia Podcast Episode 9: Carlos Moreno — The 15-Minute City",
+        "prompts": [
+          {
+            "id": "stem-1",
+            "question": "If our neighborhood put school, groceries, and a park within a short walk or bike ride, what would get better for kids your age — and what might get harder?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 30
+            },
+            "hint": "Think about: less car time, more independence, seeing friends more often, but maybe fewer big stores or activities far away."
+          },
+          {
+            "id": "stem-2",
+            "question": "What's one place nearby that already feels 'close enough,' and one that still feels too far?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 20
+            }
+          }
+        ],
+        "enrichment": "Design your ideal neighborhood on paper: draw where you'd put homes, schools, parks, shops, and bike paths to make a 15-minute city for kids!"
+      }
+    },
+    {
+      "id": "english",
+      "title": "English: Character Identity",
+      "subject": "English",
+      "conceptTags": ["characterization", "internal-identity", "external-identity", "literary-analysis"],
+      "estimatedMinutes": 5,
+      "content": {
+        "type": "exploration",
+        "introduction": "Characters are more than what they say and do. Authors show us who characters are inside (their thoughts, feelings, values) and outside (their actions, appearance, how others see them). Sometimes these match, and sometimes there's an interesting gap!",
+        "mediaReference": "Writing Excuses 19.28 — Internal vs External Identity",
+        "prompts": [
+          {
+            "id": "english-1",
+            "question": "Name a character from a book or show. What's one thing they DO that shows who they are inside — without saying it out loud?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 30
+            },
+            "hint": "Think about actions that reveal personality: helping someone quietly, choosing honesty when lying is easier, standing up for what's right, etc."
+          },
+          {
+            "id": "english-2",
+            "question": "When have you seen a character's outside not match their inside? Why might an author write that gap on purpose?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 30
+            },
+            "hint": "Maybe someone acts tough but is scared inside, or seems perfect but struggles secretly. Authors use gaps to create complexity, surprise, or deeper themes."
+          }
+        ],
+        "enrichment": "Create your own character profile: write their internal identity (what they value, fear, dream about) and external identity (how they act, what others see). Make one surprising gap between inside and outside!"
+      }
+    },
+    {
+      "id": "science",
+      "title": "Science: Quick Check-In",
+      "subject": "Science",
+      "conceptTags": ["observation", "curiosity"],
+      "estimatedMinutes": 3,
+      "content": {
+        "type": "reflection",
+        "introduction": "Science is about noticing the world around you and asking questions!",
+        "prompts": [
+          {
+            "id": "science-1",
+            "question": "What's one thing you observed in nature this week that made you curious?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 20
+            },
+            "hint": "It could be weather, animals, plants, the sky, or anything that made you wonder 'why?' or 'how?'"
+          },
+          {
+            "id": "science-2",
+            "question": "If you could investigate that observation, what would you want to find out?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 15
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "band",
+      "title": "Band: Reflection",
+      "subject": "Band",
+      "conceptTags": ["music", "practice", "growth"],
+      "estimatedMinutes": 3,
+      "content": {
+        "type": "reflection",
+        "introduction": "Music is a journey! Let's reflect on your practice and progress.",
+        "prompts": [
+          {
+            "id": "band-1",
+            "question": "What's one part of your music practice that felt easier this week than it did last week?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 15
+            },
+            "hint": "Maybe a rhythm, a note, a technique, or even just feeling more comfortable with your instrument."
+          },
+          {
+            "id": "band-2",
+            "question": "What's one thing you want to work on in the next practice session?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 10
+            },
+            "optional": true
+          }
+        ]
+      }
+    }
+  ]
+}
