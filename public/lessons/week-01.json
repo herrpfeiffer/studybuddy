@@ -1,7 +1,7 @@
 {
   "weekId": "week-01",
   "title": "Week 1: Properties of Equality & Explorations",
-  "dateRange": "Sep 14–20, 2026",
+  "dateRange": "Week of September 14-20",
   "estimatedMinutes": 30,
   "stations": [
     {
@@ -15,7 +15,7 @@
           "id": "math-1",
           "tier": 1,
           "type": "equality-reasoning",
-          "prompt": "Two equations are written on the board:\n\n**Equation A:** x + 7 = 12\n\n**Equation B:** x + 7 - 7 = 12 - 7\n\nElena claims Equation B is \"a different problem\" because the numbers look different.\n\n**Part 1:** Are A and B equivalent? Explain your reasoning without solving for x first.\n\n**Part 2:** Find x and check by substitution in BOTH equations.",
+          "prompt": "Two equations are written on the board:\n\n**Equation A:** x + 7 = 12\n\n**Equation B:** x + 7 - 7 = 12 - 7\n\nA student claims Equation B is \"a different problem\" because the numbers look different.\n\n**Part 1:** Are A and B equivalent? Explain your reasoning without solving for x first.\n\n**Part 2:** Find x and check by substitution in BOTH equations.",
           "parts": [
             {
               "partId": "reasoning",
@@ -156,23 +156,23 @@
           "id": "math-4",
           "tier": 2,
           "type": "error-analysis",
-          "prompt": "Marcus and Carly each start with the same true equation: y + 11 = 20\n\n- **Marcus** subtracts 11 from both sides.\n- **Carly** subtracts 11 from the left and subtracts 9 from the right \"to make the right side nicer.\"",
+          "prompt": "Jamie and Sam each start with the same true equation: y + 11 = 20\n\n- **Jamie** subtracts 11 from both sides.\n- **Sam** subtracts 11 from the left and subtracts 9 from the right \"to make the right side nicer.\"",
           "parts": [
             {
               "partId": "who-correct",
               "question": "Who preserved equivalence?",
               "type": "multiple-choice",
-              "options": ["Marcus", "Carly", "Both", "Neither"],
+              "options": ["Jamie", "Sam", "Both", "Neither"],
               "correctAnswer": 0,
-              "explanation": "Marcus preserved equivalence by subtracting 11 from BOTH sides."
+              "explanation": "Jamie preserved equivalence by subtracting 11 from BOTH sides."
             },
             {
               "partId": "who-broke",
               "question": "Who broke equivalence?",
               "type": "multiple-choice",
-              "options": ["Marcus", "Carly", "Both", "Neither"],
+              "options": ["Jamie", "Sam", "Both", "Neither"],
               "correctAnswer": 1,
-              "explanation": "Carly broke equivalence by subtracting different amounts from each side (11 left, 9 right)."
+              "explanation": "Sam broke equivalence by subtracting different amounts from each side (11 left, 9 right)."
             },
             {
               "partId": "fix",

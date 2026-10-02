@@ -1,6 +1,6 @@
 import type { AppState, ConceptMastery } from '../types/lesson';
 
-const STORAGE_KEY = 'elena-weekly-studio';
+const STORAGE_KEY = 'weekly-learning-studio';
 
 export const loadState = (): AppState => {
   try {

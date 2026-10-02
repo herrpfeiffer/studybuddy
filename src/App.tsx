@@ -111,7 +111,7 @@ function App() {
   if (loading) {
     return (
       <div className="app">
-        <div className="loading">Loading Elena's Weekly Studio...</div>
+        <div className="loading">Loading Weekly Learning Studio...</div>
       </div>
     );
   }
@@ -138,7 +138,7 @@ function App() {
       <header className="header">
         <h1>
           <span>📚</span>
-          Elena's Weekly Studio
+          Weekly Learning Studio
         </h1>
         <p>Let's explore, practice, and grow together!</p>
         

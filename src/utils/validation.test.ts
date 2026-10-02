@@ -49,7 +49,7 @@ describe('validateAnswer', () => {
         partId: 'test',
         question: 'Who is correct?',
         type: 'multiple-choice',
-        options: ['Marcus', 'Carly', 'Both', 'Neither'],
+        options: ['Student A', 'Student B', 'Both', 'Neither'],
         correctAnswer: 0,
       };
 
@@ -62,7 +62,7 @@ describe('validateAnswer', () => {
         partId: 'test',
         question: 'Who is correct?',
         type: 'multiple-choice',
-        options: ['Marcus', 'Carly', 'Both', 'Neither'],
+        options: ['Student A', 'Student B', 'Both', 'Neither'],
         correctAnswer: 0,
       };
 

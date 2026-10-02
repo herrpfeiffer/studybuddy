@@ -1,6 +1,6 @@
-# Elena Weekly Studio
+# Weekly Learning Studio
 
-An interactive ~30-minute weekly learning app for 7th grader Elena, covering Math, English, STEM, Science, and Band. The app provides practice and enrichment activities with answer validation, hints, and concept mastery tracking.
+An interactive ~30-minute weekly learning app for 7th grade students, covering Math, English, STEM, Science, and Band. The app provides practice and enrichment activities with answer validation, hints, and concept mastery tracking.
 
 **🎯 Academic Integrity**: This app is designed for **practice and enrichment only** — never framed as homework to submit to school.
 
@@ -180,7 +180,7 @@ Each station can have either **problems** (for interactive Q&A) or **content** (
 ## 📁 Project Structure
 
 ```
-elena-weekly-studio/
+weekly-learning-studio/
 ├── public/
 │   └── lessons/
 │       └── week-01.json        # Week 1 lesson data
@@ -244,7 +244,7 @@ Export/import functionality allows:
 {
   "weekId": "week-02",
   "title": "Week 2: Title Here",
-  "dateRange": "Sep 21–27, 2026",
+  "dateRange": "Week of September 21-27",
   "estimatedMinutes": 30,
   "stations": [
     {
@@ -295,14 +295,14 @@ See `src/utils/validation.ts` for implementation details.
 
 ## 🎯 Week 1 Content
 
-Week 1 (Sep 14–20, 2026) includes:
+Week 1 includes:
 
 ### Math: Properties of Equality
 5 interactive problems covering:
 1. Equivalent equations reasoning
 2. Addition property of equality
 3. Balance scale model
-4. Error analysis (Marcus vs Carly)
+4. Error analysis (comparing two approaches)
 5. Spot the mistake
 
 ### STEM: Future Cities
@@ -339,4 +339,4 @@ Content based on:
 
 ---
 
-Built with ❤️ for Elena's learning journey
+Built with ❤️ for student learning and growth
