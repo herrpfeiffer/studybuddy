@@ -15,6 +15,7 @@ const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete 
   const [feedback, setFeedback] = useState<Record<string, { correct: boolean; message: string }>>({});
   const [attempts, setAttempts] = useState<Record<string, number>>({});
   const [showHints, setShowHints] = useState<Record<string, boolean>>({});
+  const [showExplainer, setShowExplainer] = useState(false);
 
   const handleAnswerChange = (partId: string, value: any) => {
     setAnswers(prev => ({ ...prev, [partId]: value }));
@@ -75,6 +76,38 @@ const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete 
         </div>
         {problem.prompt}
       </div>
+
+      {problem.explainer && (
+        <div style={{ marginTop: 'var(--spacing-md)', marginBottom: 'var(--spacing-lg)' }}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setShowExplainer(!showExplainer)}
+            style={{ 
+              fontSize: '0.9rem',
+              padding: '0.5rem 1rem',
+              background: showExplainer ? '#e0e7ff' : '#f3f4f6',
+              color: showExplainer ? '#4f46e5' : '#6b7280',
+              border: '1px solid #d1d5db'
+            }}
+          >
+            {showExplainer ? '📖 Hide' : '📖 Quick Reminder'}
+          </button>
+          {showExplainer && (
+            <div style={{
+              marginTop: 'var(--spacing-md)',
+              padding: 'var(--spacing-md)',
+              background: '#f0f9ff',
+              borderRadius: 'var(--border-radius)',
+              borderLeft: '4px solid #0ea5e9',
+              fontSize: '0.95rem',
+              lineHeight: '1.6',
+              whiteSpace: 'pre-line'
+            }}>
+              {problem.explainer}
+            </div>
+          )}
+        </div>
+      )}
 
       {problem.parts.map((part) => (
         <div 

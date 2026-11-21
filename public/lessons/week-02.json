@@ -15,179 +15,187 @@
           "id": "math-1",
           "tier": 1,
           "type": "sample-space",
-          "prompt": "You flip a coin and roll a standard 6-sided die.\n\n**Part 1:** List the complete sample space (all possible outcomes).\n\n**Part 2:** What is the probability of getting heads and an even number?",
+          "prompt": "You flip a coin and roll a standard 6-sided die at the same time.",
+          "explainer": "WHAT IS A SAMPLE SPACE?\nA sample space is a list of ALL possible outcomes. Don't skip any!\n\nHOW TO WRITE OUTCOMES:\nCombine what happens with each object. Write them as short codes.\n\nEXAMPLE (different from the question below):\nIf you flip a coin twice, the sample space is:\nHH (heads, heads)\nHT (heads, tails)\nTH (tails, heads)\nTT (tails, tails)\n\nThat's 4 total outcomes — every possible way it could go.\n\nNow make YOUR sample space for a coin AND a die!",
           "parts": [
             {
               "partId": "list-outcomes",
-              "question": "List all possible outcomes (e.g., H1, H2, ...):",
+              "question": "List ALL possible outcomes. Write each one as the coin result + the die number. For example: H1 means Heads and a 1, T4 means Tails and a 4. Write all of them:",
               "type": "text",
               "validation": {
                 "keywords": ["H1", "H2", "H3", "H4", "H5", "H6", "T1", "T2", "T3", "T4", "T5", "T6"],
                 "minLength": 30
               },
-              "hint": "Start with heads: H1, H2, H3... then tails: T1, T2, T3...",
+              "hint": "Start by listing Heads with each die number: H1, H2, H3, H4, H5, H6. Then list Tails with each die number.",
               "correctAnswer": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6"
             },
             {
               "partId": "count-total",
-              "question": "How many total outcomes are in the sample space?",
+              "question": "How many total outcomes are in your sample space?",
               "type": "numeric",
               "correctAnswer": 12,
-              "hint": "Count all the outcomes you listed."
+              "hint": "Count every outcome you listed above."
             },
             {
               "partId": "probability",
-              "question": "What is the probability of getting heads AND an even number? (Give your answer as a fraction like 3/12)",
+              "question": "What is the probability of getting Heads AND an even number (2, 4, or 6)? Give your answer as a fraction, decimal, or percent:",
               "type": "text",
               "validation": {
                 "keywords": ["1/4", "3/12", "0.25", "25%"],
                 "minLength": 2
               },
               "correctAnswer": "3/12 or 1/4 or 0.25 or 25%",
-              "hint": "Count favorable outcomes (H2, H4, H6) and divide by total outcomes."
+              "hint": "How many outcomes have Heads AND an even die number? Divide that by the total number of outcomes."
             }
           ],
-          "enrichment": "Challenge: What's the probability of getting tails OR a number greater than 4?"
+          "enrichment": "Challenge: What's the probability of getting Tails OR a number greater than 4?"
         },
         {
           "id": "math-2",
           "tier": 1,
           "type": "independent-events",
-          "prompt": "You roll a die twice. The first roll doesn't change what happens on the second roll — these are **independent events**.\n\n**When to multiply probabilities:** For independent events, multiply P(first) × P(second).",
+          "prompt": "You roll a standard die twice. The first roll doesn't affect what happens on the second roll.",
+          "explainer": "WHAT ARE INDEPENDENT EVENTS?\nIndependent events are when the first outcome does NOT change the second outcome. The die doesn't 'remember' the first roll!\n\nWHEN DO YOU MULTIPLY?\nFor independent events, multiply the probabilities: P(first) × P(second).\n\nEXAMPLE (different from the question below):\nWhat's the probability of flipping Heads twice in a row?\n- P(first Heads) = 1/2\n- P(second Heads) = 1/2\n- P(both Heads) = 1/2 × 1/2 = 1/4\n\nThe coin doesn't care what happened before — each flip is independent!\n\nNow try the die problem using the same multiply method.",
           "parts": [
             {
               "partId": "first-roll",
-              "question": "What is the probability of rolling a 6 on the first roll?",
+              "question": "What is the probability of rolling a 6 on the FIRST roll?",
               "type": "text",
               "validation": {
                 "keywords": ["1/6"],
                 "minLength": 2
               },
-              "correctAnswer": "1/6"
+              "correctAnswer": "1/6",
+              "hint": "A standard die has 6 faces. Only one of them is a 6."
             },
             {
               "partId": "second-roll",
-              "question": "What is the probability of rolling a 6 on the second roll?",
+              "question": "What is the probability of rolling a 6 on the SECOND roll?",
               "type": "text",
               "validation": {
                 "keywords": ["1/6"],
                 "minLength": 2
               },
-              "correctAnswer": "1/6"
+              "correctAnswer": "1/6",
+              "hint": "The die still has 6 faces on the second roll. The first roll didn't change it."
             },
             {
               "partId": "multiply",
-              "question": "Multiply these probabilities to find P(6 on first AND 6 on second). Give your answer as a fraction:",
+              "question": "Now MULTIPLY the two probabilities to find P(6 on first roll AND 6 on second roll). Write your answer as a fraction:",
               "type": "text",
               "validation": {
                 "keywords": ["1/36"],
                 "minLength": 2
               },
               "correctAnswer": "1/36",
-              "hint": "Multiply the numerators: 1 × 1. Multiply the denominators: 6 × 6."
+              "hint": "Multiply: (1/6) × (1/6). Top times top: 1 × 1 = 1. Bottom times bottom: 6 × 6 = ?"
             }
           ],
-          "enrichment": "Challenge: What's the probability of rolling a 5 and then a 3?"
+          "enrichment": "Challenge: What's the probability of rolling a 5 on the first roll and then a 3 on the second roll?"
         },
         {
           "id": "math-3",
           "tier": 2,
           "type": "dependent-events",
-          "prompt": "A carton has 4 raw eggs and 8 hard-boiled eggs (12 total). You draw one egg, then draw another **without replacement**.\n\nWithout replacement means the first draw changes what's left for the second draw — these are **dependent events**.",
+          "prompt": "A carton has 12 eggs: 4 are raw and 8 are hard-boiled. You draw one egg, KEEP IT OUT, then draw another egg. You don't put the first egg back.",
+          "explainer": "WHAT ARE DEPENDENT EVENTS?\nDependent events are when the first outcome DOES change what's left for the second outcome.\n\nWHAT IS 'WITHOUT REPLACEMENT'?\n'Without replacement' means you don't put the first item back. So the second draw has fewer items to choose from!\n\nEXAMPLE (different from the question below):\nA bag has 5 red marbles and 5 blue marbles (10 total).\nYou draw one red marble and keep it. What's left?\n- Red marbles left: 5 - 1 = 4\n- Blue marbles left: 5 (unchanged)\n- Total marbles left: 10 - 1 = 9\n\nNow P(second red) = 4/9 (not 5/10!)\n\nTo find P(both red): multiply (5/10) × (4/9) = 20/90 = 2/9\n\nSee? The first draw changed the second probability. That's dependent events!\n\nNow try the egg problem using the same method.",
           "parts": [
             {
               "partId": "first-raw",
-              "question": "What is the probability the first egg is raw?",
+              "question": "What is the probability the FIRST egg you draw is raw?",
               "type": "text",
               "validation": {
                 "keywords": ["4/12", "1/3"],
                 "minLength": 2
               },
               "correctAnswer": "4/12 or 1/3",
-              "hint": "There are 4 raw eggs out of 12 total."
+              "hint": "How many eggs are raw? How many eggs total? Write it as a fraction: raw / total."
             },
             {
               "partId": "second-raw-given-first",
-              "question": "If the first egg was raw, how many raw eggs are left? How many total eggs are left?",
+              "question": "Imagine the first egg WAS raw and you kept it out. Now how many raw eggs are LEFT? How many TOTAL eggs are left?",
               "type": "text",
               "validation": {
                 "keywords": ["3", "11"],
                 "minLength": 5
               },
               "correctAnswer": "3 raw eggs left, 11 total eggs left",
-              "hint": "One raw egg is gone, so 4 - 1 = 3 raw. Total is 12 - 1 = 11."
+              "hint": "You took out one raw egg. So: raw left = 4 - 1 = ? Total left = 12 - 1 = ?"
             },
             {
               "partId": "second-raw-probability",
-              "question": "Given the first was raw, what is the probability the second is also raw?",
+              "question": "Now write the probability the second egg is ALSO raw (using the numbers you just found):",
               "type": "text",
               "validation": {
                 "keywords": ["3/11"],
                 "minLength": 2
               },
-              "correctAnswer": "3/11"
+              "correctAnswer": "3/11",
+              "hint": "Use the numbers from the previous question: (raw left) / (total left)."
             },
             {
               "partId": "both-raw",
-              "question": "Multiply to find P(first raw AND second raw). Give your answer as a fraction:",
+              "question": "Finally, MULTIPLY to find P(first raw AND second raw). Write your answer as a fraction. You can simplify it if you want:",
               "type": "text",
               "validation": {
                 "keywords": ["12/132", "1/11"],
                 "minLength": 2
               },
               "correctAnswer": "4/12 × 3/11 = 12/132 = 1/11",
-              "hint": "Multiply (4/12) × (3/11). Simplify if you can!"
+              "hint": "Multiply (4/12) × (3/11). Multiply the tops: 4 × 3. Multiply the bottoms: 12 × 11."
             }
           ],
-          "enrichment": "Challenge: What if you drew 3 eggs without replacement — what's the probability all 3 are raw?"
+          "enrichment": "Challenge: What's the probability of drawing 3 raw eggs in a row (without putting any back)?"
         },
         {
           "id": "math-4",
           "tier": 2,
           "type": "at-least-one",
-          "prompt": "You flip a coin 3 times. What is the probability of getting **at least one heads**?\n\n**Trick:** 'At least one' is easier with: P(at least one heads) = 1 - P(no heads at all).",
+          "prompt": "You flip a coin 3 times. What is the probability of getting AT LEAST ONE heads? ('At least one' means 'one or more')",
+          "explainer": "THE 'AT LEAST ONE' TRICK:\nProblems with 'at least one' are easier if you use the OPPOSITE!\n\nThe opposite of 'at least one heads' is 'NO heads at all' (all tails).\n\nFORMULA:\nP(at least one heads) = 1 - P(no heads at all)\n\nEXAMPLE (different from the question below):\nYou roll a die twice. What's P(at least one 6)?\n\nStep 1: Find P(no 6 at all) = P(not-6, not-6)\n- P(first roll not 6) = 5/6\n- P(second roll not 6) = 5/6\n- P(no 6 at all) = 5/6 × 5/6 = 25/36\n\nStep 2: Use the formula:\nP(at least one 6) = 1 - 25/36 = 36/36 - 25/36 = 11/36\n\nMuch easier than listing all the ways to get at least one 6!\n\nNow try the coin problem using this same trick.",
           "parts": [
             {
               "partId": "no-heads",
-              "question": "What does 'no heads at all' mean?",
+              "question": "What does 'NO heads at all' mean in 3 coin flips?",
               "type": "text",
               "validation": {
                 "keywords": ["all tails", "tails", "TTT"],
                 "minLength": 5
               },
               "correctAnswer": "All tails (TTT)",
-              "hint": "If you don't get any heads, you get..."
+              "hint": "If you never get heads, what do you get on every single flip?"
             },
             {
               "partId": "p-no-heads",
-              "question": "What is P(all tails in 3 flips)? Remember, multiply for independent events:",
+              "question": "Calculate P(all tails in 3 flips). Remember: the flips are independent, so MULTIPLY:",
               "type": "text",
               "validation": {
                 "keywords": ["1/8"],
                 "minLength": 2
               },
               "correctAnswer": "1/8",
-              "hint": "P(T) = 1/2 for each flip. Multiply: (1/2) × (1/2) × (1/2)."
+              "hint": "P(tails on one flip) = 1/2. For 3 flips: (1/2) × (1/2) × (1/2) = ?"
             },
             {
               "partId": "p-at-least-one",
-              "question": "Calculate P(at least one heads) = 1 - P(no heads). Give your answer as a fraction:",
+              "question": "Now use the formula: P(at least one heads) = 1 - P(no heads). Calculate it:",
               "type": "text",
               "validation": {
                 "keywords": ["7/8"],
                 "minLength": 2
               },
               "correctAnswer": "7/8",
-              "hint": "1 - 1/8 = 8/8 - 1/8 = ?"
+              "hint": "Do: 1 - 1/8. That's the same as 8/8 - 1/8 = ?"
             }
           ],
-          "enrichment": "Challenge: What's the probability of getting at least one 6 when rolling a die twice?"
+          "enrichment": "Challenge: What's the probability of getting at least one 6 when you roll a die twice?"
         },
         {
           "id": "math-5",
           "tier": 1,
           "type": "conversions",
-          "prompt": "Practice converting between fractions, decimals, and percents **by hand** (no calculator!).",
+          "prompt": "Practice converting between fractions, decimals, and percents BY HAND (no calculator!).",
+          "explainer": "CONVERSION GUIDE:\n\n1. FRACTION → DECIMAL:\nDivide the top by the bottom.\nExample: 3/4 means 3 ÷ 4 = 0.75\n\n2. DECIMAL → PERCENT:\nMove the decimal point TWO places RIGHT and add %.\nExample: 0.75 → 75%\n\n3. PERCENT → FRACTION:\nWrite it over 100, then simplify.\nExample: 40% = 40/100 = 2/5\n\n4. FRACTION → PERCENT:\nFirst convert to decimal, then to percent.\nExample: 1/2 → 0.5 → 50%\n\nRemember: 0.25 = 1/4 = 25% are all the SAME value, just written differently!",
           "parts": [
             {
               "partId": "fraction-to-decimal",
@@ -198,7 +206,7 @@
                 "minLength": 2
               },
               "correctAnswer": "0.75",
-              "hint": "Divide 3 by 4."
+              "hint": "Divide: 3 ÷ 4 = ?"
             },
             {
               "partId": "decimal-to-percent",
@@ -209,7 +217,7 @@
                 "minLength": 2
               },
               "correctAnswer": "75%",
-              "hint": "Move the decimal point two places right and add %."
+              "hint": "Move the decimal point TWO places to the right and add %."
             },
             {
               "partId": "percent-to-fraction",
@@ -220,41 +228,42 @@
                 "minLength": 2
               },
               "correctAnswer": "2/5 or 4/10",
-              "hint": "40% means 40/100. Can you simplify that?"
+              "hint": "40% means 40 out of 100, so write 40/100. Can you simplify that? Divide top and bottom by 20."
             }
           ],
-          "enrichment": "Practice more: 1/2, 1/5, 3/10 — convert each to decimal and percent!"
+          "enrichment": "Practice more: Convert 1/2, 1/5, and 3/10 to both decimal and percent!"
         },
         {
           "id": "math-6",
           "tier": 3,
           "type": "spot-the-mistake",
-          "prompt": "**Spot the mistake:**\n\nProblem: A bag has 5 red marbles and 10 blue marbles. You draw one, keep it, then draw another. What's the probability both are red?\n\nStudent's work:\n- P(first red) = 5/15 = 1/3\n- P(second red) = 5/15 = 1/3\n- P(both red) = 1/3 × 1/3 = 1/9",
+          "prompt": "Read this student's work and find their mistake.\n\nPROBLEM: A bag has 5 red marbles and 10 blue marbles (15 total). You draw one marble and KEEP IT, then draw another. What's the probability both are red?\n\nSTUDENT'S WORK:\n- P(first red) = 5/15 = 1/3\n- P(second red) = 5/15 = 1/3\n- P(both red) = 1/3 × 1/3 = 1/9",
+          "explainer": "SPOT THE MISTAKE STRATEGY:\n\nWhen checking someone else's work, ask:\n1. Did they identify the type correctly? (Independent or dependent?)\n2. If dependent (without replacement), did they adjust the counts?\n3. Did they multiply when they should?\n4. Are the numbers logical?\n\nFor 'without replacement' problems:\n- After the first draw, FEWER items are left\n- The probabilities CHANGE for the second draw\n\nCommon mistake: Using the same probability twice when items aren't replaced!",
           "parts": [
             {
               "partId": "find-mistake",
-              "question": "What mistake did the student make?",
+              "question": "Explain the student's mistake. What did they do wrong?",
               "type": "text",
               "validation": {
                 "keywords": ["without replacement", "second", "4", "14", "dependent"],
                 "minLength": 20
               },
-              "correctAnswer": "The student used 5/15 for the second draw, but without replacement, there are only 4 red marbles left out of 14 total. The events are dependent, not independent.",
-              "hint": "After drawing one red marble, how many red marbles are left? How many total?"
+              "correctAnswer": "The student used 5/15 for the second draw, but without replacement, there are only 4 red marbles left out of 14 total after the first draw. They treated it like independent events when they're actually dependent.",
+              "hint": "After the first red marble is drawn and KEPT, how many red marbles are left? How many total marbles are left?"
             },
             {
               "partId": "correct-answer",
-              "question": "What is the CORRECT probability of both red? Show your work as a fraction:",
+              "question": "What is the CORRECT probability? Show your work:",
               "type": "text",
               "validation": {
                 "keywords": ["20/210", "2/21"],
                 "minLength": 3
               },
               "correctAnswer": "(5/15) × (4/14) = 20/210 = 2/21",
-              "hint": "First draw: 5/15. Second draw (after removing one red): 4/14. Multiply them."
+              "hint": "First draw: 5/15. Second draw (after one red is gone): 4/14. Now multiply them."
             }
           ],
-          "enrichment": "Create your own 'spot the mistake' problem with dependent events!"
+          "enrichment": "Create your own 'spot the mistake' problem where someone forgets to adjust for dependent events!"
         }
       ]
     },
@@ -266,76 +275,81 @@
       "estimatedMinutes": 8,
       "content": {
         "type": "exploration",
-        "introduction": "Matter is made of atoms, but atoms rarely exist alone. They join together to form molecules and other structures through chemical bonds. Let's review!",
+        "introduction": "Matter is made of atoms, but atoms rarely exist alone in nature. They join together to form molecules and larger structures through chemical bonds. Let's review the basics!",
         "prompts": [
           {
             "id": "science-1",
-            "question": "What's the difference between an atom and a molecule?",
+            "question": "What's the difference between an atom and a molecule? Explain in your own words:",
             "type": "reflection",
+            "explainer": "KEY DEFINITIONS:\n\nATOM = The smallest unit of an element. One single particle. Think of it like one LEGO brick.\nExample: One oxygen atom (O), one hydrogen atom (H), one carbon atom (C).\n\nMOLECULE = Two or more atoms bonded together. They can be the same element or different elements. Think of it like LEGO bricks snapped together.\nExample: O₂ (two oxygen atoms bonded), H₂O (two hydrogen + one oxygen bonded).\n\nThe key: ATOMS are single, MOLECULES are groups stuck together!",
             "validation": {
               "keywords": ["atom", "molecule", "one", "two", "together", "bonded"],
               "minLength": 25
             },
-            "hint": "An atom is a single particle of an element. A molecule is...",
-            "correctAnswer": "An atom is the smallest unit of an element (like one oxygen). A molecule is two or more atoms bonded together (like O₂ or H₂O)."
+            "hint": "Start with: An atom is one single... A molecule is two or more atoms...",
+            "correctAnswer": "An atom is the smallest unit of an element — just one particle. A molecule is two or more atoms bonded together, like O₂ or H₂O."
           },
           {
             "id": "science-2",
-            "question": "What is a chemical bond?",
+            "question": "What is a chemical bond? What does it do?",
             "type": "reflection",
+            "explainer": "WHAT IS A CHEMICAL BOND?\n\nA chemical bond is the FORCE that holds atoms together. It's like invisible glue!\n\nWHAT CREATES THE BOND?\nElectrons! Atoms can share electrons or transfer electrons between them. The electron behavior creates an attractive force.\n\nWHY DO ATOMS BOND?\nAtoms bond because it makes them more stable (lower energy). Most atoms 'want' to have full outer electron shells, so they bond to achieve that.\n\nExample: In H₂O, the oxygen and hydrogen atoms are held together by chemical bonds involving shared electrons.",
             "validation": {
               "keywords": ["atoms", "together", "electrons", "force", "holds"],
               "minLength": 20
             },
-            "hint": "Think about what keeps atoms connected to each other.",
-            "correctAnswer": "A chemical bond is a force that holds atoms together. It involves the interaction of electrons between atoms."
+            "hint": "Think about what keeps atoms connected and what particles are involved.",
+            "correctAnswer": "A chemical bond is a force that holds atoms together. It involves electrons interacting between atoms to create an attractive force."
           },
           {
             "id": "science-3",
-            "question": "Describe ionic bonds in your own words:",
+            "question": "Describe ionic bonds in your own words. What happens to electrons?",
             "type": "reflection",
+            "explainer": "IONIC BONDS:\n\nWHAT HAPPENS:\nOne atom GIVES UP electrons → becomes POSITIVE ion\nAnother atom TAKES those electrons → becomes NEGATIVE ion\n\nThen what? Opposite charges ATTRACT, like magnets!\n\nEXAMPLE:\nSodium (Na) gives up 1 electron → becomes Na⁺ (positive)\nChlorine (Cl) takes that electron → becomes Cl⁻ (negative)\nNa⁺ and Cl⁻ attract each other → forms NaCl (table salt!)\n\nKEY WORD: TRANSFER (electrons move from one atom to another)\n\nIonic bonds usually form between metals and nonmetals.",
             "validation": {
               "keywords": ["electrons", "transfer", "give", "take", "positive", "negative", "attract"],
               "minLength": 25
             },
-            "hint": "Think about electrons moving from one atom to another, creating charged particles that attract.",
-            "correctAnswer": "In ionic bonds, one atom gives up electrons to another atom. This creates a positive ion and a negative ion. The opposite charges attract and hold the atoms together."
+            "hint": "Think about electrons moving from one atom to another, creating charged particles.",
+            "correctAnswer": "In ionic bonds, one atom gives up electrons to another atom. This creates positive and negative ions. The opposite charges attract and hold the atoms together."
           },
           {
             "id": "science-4",
-            "question": "Describe covalent bonds in your own words:",
+            "question": "Describe covalent bonds in your own words. What happens to electrons?",
             "type": "reflection",
+            "explainer": "COVALENT BONDS:\n\nWHAT HAPPENS:\nAtoms SHARE electrons — they both 'use' the same electrons!\nNo one gives up or takes. They share ownership.\n\nEXAMPLE:\nTwo hydrogen atoms (H) each have 1 electron.\nThey share their electrons → H₂ molecule\nBoth hydrogens now 'feel like' they have 2 electrons, which makes them stable!\n\nANOTHER EXAMPLE:\nWater (H₂O): oxygen SHARES electrons with two hydrogens.\n\nKEY WORD: SHARE (electrons stay between the atoms)\n\nCovalent bonds usually form between nonmetals.",
             "validation": {
               "keywords": ["electrons", "share", "sharing", "both"],
               "minLength": 20
             },
-            "hint": "Think about atoms working together with electrons.",
-            "correctAnswer": "In covalent bonds, atoms share electrons. Both atoms get to 'use' the shared electrons, which holds them together."
+            "hint": "Think about atoms working together with electrons, not transferring them.",
+            "correctAnswer": "In covalent bonds, atoms share electrons. Both atoms get to use the shared electrons, which holds them together."
           },
           {
             "id": "science-5",
-            "question": "Why do crystals have repeating patterns?",
+            "question": "Why do crystals have repeating patterns? What causes that regular structure?",
             "type": "reflection",
+            "explainer": "CRYSTALS & PATTERNS:\n\nWHAT IS A CRYSTAL?\nA solid where atoms/molecules arrange in a regular, repeating 3D pattern. Like a 3D wallpaper!\n\nWHY REPEATING?\nAtoms naturally arrange themselves in the most stable, lowest-energy way. When millions of atoms bond, they follow the SAME bonding pattern over and over.\n\nEXAMPLE:\nTable salt (NaCl): Each Na⁺ surrounds itself with Cl⁻ ions in the same arrangement. That pattern repeats in all directions → cube-shaped salt crystals!\n\nThe regular bonding → regular structure → visible crystal shapes (cubes, hexagons, etc.)",
             "validation": {
               "keywords": ["atoms", "arrange", "pattern", "structure", "same", "repeating", "order"],
               "minLength": 25
             },
-            "hint": "Think about how atoms naturally organize themselves when they bond in large numbers.",
-            "correctAnswer": "Crystals have repeating patterns because atoms and molecules arrange themselves in an orderly, repeating structure. The same pattern of bonds repeats over and over, creating the crystal's regular shape."
+            "hint": "Think about how atoms organize themselves when many of them bond together.",
+            "correctAnswer": "Crystals have repeating patterns because atoms arrange themselves in an orderly structure. The same bonding pattern repeats over and over, creating the crystal's regular shape."
           },
           {
             "id": "science-6",
-            "question": "Explain one difference between ionic and covalent bonds:",
+            "question": "Name one key difference between ionic bonds and covalent bonds:",
             "type": "reflection",
             "validation": {
               "keywords": ["ionic", "covalent", "electrons", "share", "transfer"],
               "minLength": 25
             },
-            "hint": "What happens to the electrons in each type?",
-            "correctAnswer": "Ionic bonds involve transferring electrons from one atom to another, while covalent bonds involve sharing electrons between atoms."
+            "hint": "What happens to the electrons in each type of bond?",
+            "correctAnswer": "Ionic bonds involve transferring electrons from one atom to another (creating ions), while covalent bonds involve sharing electrons between atoms."
           }
         ],
-        "enrichment": "Draw a simple diagram showing 2 atoms with a covalent bond (shared electrons) and 2 ions with an ionic bond (transferred electrons attracting)."
+        "enrichment": "Draw a simple diagram: Show 2 atoms with a covalent bond (shared electrons between them) and 2 ions with an ionic bond (one lost electrons, one gained electrons, now attracting)."
       }
     },
     {
@@ -346,76 +360,82 @@
       "estimatedMinutes": 6,
       "content": {
         "type": "reflection",
-        "introduction": "Let's review the origins and foundations of Islam with respect and historical accuracy.",
+        "introduction": "Islam is one of the world's major religions, with over 1.8 billion followers worldwide. Let's review its origins and core foundations with respect and historical accuracy.",
         "prompts": [
           {
             "id": "social-1",
             "question": "Where and approximately when did Islam begin?",
             "type": "reflection",
+            "explainer": "ISLAM'S ORIGINS:\n\nWHERE: The Arabian Peninsula (modern-day Saudi Arabia), specifically in the city of Mecca.\n\nWHEN: Around 610 CE (early 7th century). That's about 1400 years ago!\n\nCONTEXT: At that time, the Arabian Peninsula was a crossroads of trade routes. Many different religions and cultures mixed there.",
             "validation": {
               "keywords": ["Arabia", "Mecca", "600", "610", "7th century"],
               "minLength": 15
             },
-            "hint": "Think about the Arabian Peninsula in the 7th century CE.",
+            "hint": "Think about the Arabian Peninsula and the time period (century).",
             "correctAnswer": "Islam began in Mecca, in the Arabian Peninsula, around 610 CE (early 7th century)."
           },
           {
             "id": "social-2",
-            "question": "Who was Muhammad, and what role did he play in Islam?",
+            "question": "Who was Muhammad? What role did he play in Islam?",
             "type": "reflection",
+            "explainer": "MUHAMMAD (570-632 CE):\n\nWHO: A merchant from Mecca who became a prophet.\n\nHIS ROLE: Muslims believe Muhammad received revelations (messages) from God (Allah in Arabic). He shared these teachings, which became the foundation of Islam.\n\nKEY TERM: Prophet = A messenger who communicates God's will to people.\n\nIMPORTANT: Muslims view Muhammad as the final prophet in a line that includes Abraham, Moses, and Jesus. He is deeply respected but is NOT worshipped (Muslims worship God/Allah alone).",
             "validation": {
               "keywords": ["prophet", "messenger", "founded", "revelations", "God", "Allah"],
               "minLength": 25
             },
-            "hint": "Think about his role as a prophet and messenger.",
-            "correctAnswer": "Muhammad was a prophet and messenger who founded Islam. Muslims believe he received revelations from God (Allah) and shared these teachings."
+            "hint": "Think about his role as a prophet (messenger) and what he received from God.",
+            "correctAnswer": "Muhammad was a prophet and messenger who founded Islam. Muslims believe he received revelations from God (Allah) and shared these teachings with others."
           },
           {
             "id": "social-3",
-            "question": "What is the significance of Mecca in Islam?",
+            "question": "What is the significance of Mecca in Islam? Why is it important?",
             "type": "reflection",
+            "explainer": "MECCA — ISLAM'S HOLIEST CITY:\n\nWHY IMPORTANT:\n1. Muhammad's birthplace\n2. Where Islam began\n3. Location of the Kaaba (a sacred cube-shaped building, the most holy site in Islam)\n\nDAILY CONNECTION: Muslims around the world face TOWARD Mecca when they pray (5 times a day).\n\nPILGRIMAGE: Muslims try to visit Mecca at least once in their lifetime if they are able (called Hajj, one of the Five Pillars).\n\nThink of Mecca like the spiritual center — the direction and destination for Muslim worship.",
             "validation": {
               "keywords": ["birthplace", "Muhammad", "holy", "Kaaba", "pilgrimage"],
               "minLength": 20
             },
             "hint": "Think about why Muslims pray toward Mecca and make pilgrimages there.",
-            "correctAnswer": "Mecca is Islam's holiest city. It's where Muhammad was born and where the Kaaba is located. Muslims face Mecca when they pray and make pilgrimages there."
+            "correctAnswer": "Mecca is Islam's holiest city. It's where Muhammad was born, where Islam began, and where the Kaaba is located. Muslims face Mecca when they pray and make pilgrimages there."
           },
           {
             "id": "social-4",
             "question": "What is the significance of Medina in Islamic history?",
             "type": "reflection",
+            "explainer": "MEDINA — THE SECOND HOLY CITY:\n\nWHAT HAPPENED: In 622 CE, Muhammad and his followers migrated from Mecca to Medina (about 200 miles north).\n\nWHY MIGRATE: They faced persecution (harsh treatment) in Mecca.\n\nTHIS EVENT: Called the Hijra (migration/emigration). It's so important that the Islamic calendar starts from this year!\n\nIN MEDINA: Muhammad established the first Muslim community. The religion grew and organized there.\n\nMedina remains Islam's second holiest city after Mecca.",
             "validation": {
               "keywords": ["Muhammad", "migrated", "moved", "community", "emigration"],
               "minLength": 20
             },
-            "hint": "Think about where Muhammad went when he left Mecca.",
-            "correctAnswer": "Medina is where Muhammad migrated to (the Hijra/emigration) and where he established the first Muslim community."
+            "hint": "Think about where Muhammad went when he left Mecca and what he built there.",
+            "correctAnswer": "Medina is where Muhammad migrated to (called the Hijra) when he left Mecca. There he established the first Muslim community. It's Islam's second holiest city."
           },
           {
             "id": "social-5",
-            "question": "Name the Five Pillars of Islam and briefly explain what they are:",
+            "question": "Name the Five Pillars of Islam. Briefly explain what they are:",
             "type": "reflection",
+            "explainer": "THE FIVE PILLARS = Core practices of Islam (things Muslims do)\n\nThink of them like the five main supports holding up the religion.\n\n1. SHAHADA: Declaration of faith ('There is no god but God, and Muhammad is His messenger')\n\n2. SALAT: Praying 5 times a day, facing Mecca\n\n3. ZAKAT: Giving charity to help people in need (usually 2.5% of wealth)\n\n4. SAWM: Fasting (no food/drink during daylight) during the month of Ramadan\n\n5. HAJJ: Pilgrimage to Mecca at least once if physically and financially able\n\nThese are the five essential practices for Muslims!",
             "validation": {
               "keywords": ["shahada", "prayer", "charity", "fasting", "pilgrimage", "five"],
               "minLength": 40
             },
-            "hint": "The Five Pillars are the core practices of Islam: faith, prayer, charity, fasting, and pilgrimage.",
-            "correctAnswer": "The Five Pillars are: 1) Shahada (declaration of faith), 2) Salat (daily prayers), 3) Zakat (charity to those in need), 4) Sawm (fasting during Ramadan), 5) Hajj (pilgrimage to Mecca if able)."
+            "hint": "The five are: faith declaration, daily prayer, charity, fasting during Ramadan, and pilgrimage to Mecca.",
+            "correctAnswer": "The Five Pillars are: 1) Shahada (declaration of faith), 2) Salat (five daily prayers), 3) Zakat (giving charity), 4) Sawm (fasting during Ramadan), 5) Hajj (pilgrimage to Mecca if able)."
           },
           {
             "id": "social-6",
             "question": "What is the Qur'an?",
             "type": "reflection",
+            "explainer": "THE QUR'AN:\n\nWHAT IT IS: The holy book (scripture) of Islam. Like how the Bible is for Christians or the Torah is for Jews.\n\nWHAT'S IN IT: Muslims believe the Qur'an contains the revelations that Muhammad received from Allah (God). It has guidance on faith, how to live, and laws.\n\nLANGUAGE: Originally revealed in Arabic. Muslims often recite it in Arabic.\n\nSTRUCTURE: Divided into 114 chapters (called surahs).\n\nThe Qur'an is the most important text in Islam — the direct word of God to humanity, according to Muslim belief.",
             "validation": {
               "keywords": ["holy book", "scripture", "revelations", "Muhammad", "Allah", "God"],
               "minLength": 20
             },
-            "hint": "Think about the central religious text of Islam.",
-            "correctAnswer": "The Qur'an is the holy book of Islam. Muslims believe it contains the revelations that Muhammad received from Allah (God)."
+            "hint": "Think about the central religious text — what it contains and where it came from.",
+            "correctAnswer": "The Qur'an is the holy book of Islam. Muslims believe it contains the revelations Muhammad received from Allah (God)."
           }
         ],
-        "enrichment": "Research one of the Five Pillars in more depth to understand its meaning and practice in Muslim communities today."
+        "enrichment": "Research one of the Five Pillars in more depth. Why is it important to Muslim daily life and faith?"
       }
     },
     {
@@ -426,25 +446,26 @@
       "estimatedMinutes": 2,
       "content": {
         "type": "reflection",
-        "introduction": "This week is Thanksgiving! Take a moment to reflect on learning and growth.",
+        "introduction": "This week includes Thanksgiving! Take a moment to reflect on learning and growth this fall.",
         "prompts": [
           {
             "id": "thanksgiving-1",
-            "question": "What's one thing you learned recently (in school or outside) that you're grateful for?",
+            "question": "What's one thing you learned recently (in school or outside school) that you're grateful for or proud of learning?",
             "type": "reflection",
             "validation": {
               "minLength": 20
             },
-            "hint": "It could be a new skill, an interesting fact, or a helpful strategy.",
+            "hint": "It could be a new skill, an interesting fact, a strategy that helped you, or understanding something that was confusing before.",
             "optional": true
           },
           {
             "id": "thanksgiving-2",
-            "question": "What's one challenge you've worked through this fall that made you stronger or smarter?",
+            "question": "What's one challenge you faced this fall that made you stronger, smarter, or more confident?",
             "type": "reflection",
             "validation": {
               "minLength": 20
             },
+            "hint": "Challenges could be in any subject, an activity, a friendship, or something personal. What did you learn from working through it?",
             "optional": true
           }
         ]

@@ -20,6 +20,7 @@ const ContentComponent = ({
 }: ContentComponentProps) => {
   const [answer, setAnswer] = useState('');
   const [showHint, setShowHint] = useState(false);
+  const [showExplainer, setShowExplainer] = useState(false);
 
   const currentPrompt = content.prompts[currentPromptIndex];
 
@@ -72,6 +73,38 @@ const ContentComponent = ({
           {currentPrompt.optional && <span style={{ color: 'var(--color-secondary)' }}>(Optional) </span>}
           {currentPrompt.question}
         </div>
+
+        {currentPrompt.explainer && (
+          <div style={{ marginTop: 'var(--spacing-md)', marginBottom: 'var(--spacing-md)' }}>
+            <button
+              className="btn btn-secondary"
+              onClick={() => setShowExplainer(!showExplainer)}
+              style={{ 
+                fontSize: '0.9rem',
+                padding: '0.5rem 1rem',
+                background: showExplainer ? '#e0e7ff' : '#f3f4f6',
+                color: showExplainer ? '#4f46e5' : '#6b7280',
+                border: '1px solid #d1d5db'
+              }}
+            >
+              {showExplainer ? '📖 Hide' : '📖 Quick Reminder'}
+            </button>
+            {showExplainer && (
+              <div style={{
+                marginTop: 'var(--spacing-md)',
+                padding: 'var(--spacing-md)',
+                background: '#f0f9ff',
+                borderRadius: 'var(--border-radius)',
+                borderLeft: '4px solid #0ea5e9',
+                fontSize: '0.95rem',
+                lineHeight: '1.6',
+                whiteSpace: 'pre-line'
+              }}>
+                {currentPrompt.explainer}
+              </div>
+            )}
+          </div>
+        )}
 
         <textarea
           value={answer}
