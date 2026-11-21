@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { validateAnswer, evaluateEquation } from './validation';
-import type { ProblemPart } from '../types/lesson';
+import type { ProblemPart, MultiField } from '../types/lesson';
 
 describe('validateAnswer', () => {
   describe('numeric validation', () => {
@@ -493,6 +493,148 @@ describe('Compound Probability - Week 2 Math Problems', () => {
 
       expect(validateAnswer(part, '20/210').correct).toBe(true);
       expect(validateAnswer(part, '2/21').correct).toBe(true);
+    });
+  });
+
+  describe('Multi-field validation', () => {
+    it('should accept correct values in all fields (egg problem)', () => {
+      const part: ProblemPart = {
+        partId: 'counts',
+        question: 'Fill in the counts',
+        type: 'multi-field',
+        fields: [
+          { fieldId: 'raw-left', label: 'Raw eggs left', correctAnswer: 3 },
+          { fieldId: 'total-left', label: 'Total eggs left', correctAnswer: 11 },
+        ],
+      };
+
+      const result = validateAnswer(part, { 'raw-left': '3', 'total-left': '11' });
+      expect(result.correct).toBe(true);
+    });
+
+    it('should accept equivalent forms in multi-field (fractions)', () => {
+      const part: ProblemPart = {
+        partId: 'probs',
+        question: 'Fill in probabilities',
+        type: 'multi-field',
+        fields: [
+          { fieldId: 'first', label: 'First probability', correctAnswer: '5/15' },
+          { fieldId: 'second', label: 'Second probability', correctAnswer: '4/14' },
+        ],
+      };
+
+      const result = validateAnswer(part, { 'first': '1/3', 'second': '2/7' });
+      expect(result.correct).toBe(true);
+    });
+
+    it('should give specific feedback for wrong fields', () => {
+      const part: ProblemPart = {
+        partId: 'counts',
+        question: 'Fill in the counts',
+        type: 'multi-field',
+        fields: [
+          { fieldId: 'raw-left', label: 'Raw eggs left', correctAnswer: 3 },
+          { fieldId: 'total-left', label: 'Total eggs left', correctAnswer: 11 },
+        ],
+      };
+
+      const result = validateAnswer(part, { 'raw-left': '3', 'total-left': '12' });
+      expect(result.correct).toBe(false);
+      expect(result.feedback).toContain('Total eggs left');
+    });
+
+    it('should handle empty fields', () => {
+      const part: ProblemPart = {
+        partId: 'counts',
+        question: 'Fill in the counts',
+        type: 'multi-field',
+        fields: [
+          { fieldId: 'raw-left', label: 'Raw eggs left', correctAnswer: 3 },
+          { fieldId: 'total-left', label: 'Total eggs left', correctAnswer: 11 },
+        ],
+      };
+
+      const result = validateAnswer(part, { 'raw-left': '3', 'total-left': '' });
+      expect(result.correct).toBe(false);
+    });
+
+    it('should accept marbles problem with correct counts', () => {
+      const part: ProblemPart = {
+        partId: 'find-counts',
+        question: 'After drawing one red marble',
+        type: 'multi-field',
+        fields: [
+          { fieldId: 'red-left', label: 'Red marbles left', correctAnswer: 4 },
+          { fieldId: 'total-left', label: 'Total marbles left', correctAnswer: 14 },
+        ],
+      };
+
+      const result = validateAnswer(part, { 'red-left': '4', 'total-left': '14' });
+      expect(result.correct).toBe(true);
+    });
+  });
+
+  describe('Explanation validation', () => {
+    it('should accept explanation with key concepts', () => {
+      const part: ProblemPart = {
+        partId: 'explain',
+        question: 'Explain the mistake',
+        type: 'explanation',
+        validation: {
+          keywords: ['without replacement', 'dependent', '4', '14'],
+          minLength: 20,
+        },
+        modelAnswer: 'Model answer shown after correct attempt',
+      };
+
+      const result = validateAnswer(part, 'The student forgot about without replacement. After taking one red marble, there are 4 red left out of 14 total, not 5 out of 15.');
+      expect(result.correct).toBe(true);
+    });
+
+    it('should reject explanation missing key concepts', () => {
+      const part: ProblemPart = {
+        partId: 'explain',
+        question: 'Explain the mistake',
+        type: 'explanation',
+        validation: {
+          keywords: ['without replacement', 'dependent', '4', '14'],
+          minLength: 20,
+        },
+      };
+
+      const result = validateAnswer(part, 'The student did the math wrong');
+      expect(result.correct).toBe(false);
+      expect(result.feedback).toContain('Good start!');
+    });
+
+    it('should require minimum length', () => {
+      const part: ProblemPart = {
+        partId: 'explain',
+        question: 'Explain',
+        type: 'explanation',
+        validation: {
+          minLength: 20,
+        },
+      };
+
+      const result = validateAnswer(part, 'Too short');
+      expect(result.correct).toBe(false);
+      expect(result.feedback).toContain('at least 20 characters');
+    });
+
+    it('should accept varied wording with key concepts', () => {
+      const part: ProblemPart = {
+        partId: 'explain',
+        question: 'Explain',
+        type: 'explanation',
+        validation: {
+          keywords: ['forgot', 'changed', 'second'],
+          minLength: 20,
+        },
+      };
+
+      const result = validateAnswer(part, 'They forgot that the counts changed for the second draw when the marble was removed');
+      expect(result.correct).toBe(true);
     });
   });
 });

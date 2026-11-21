@@ -138,6 +138,61 @@ const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete 
             />
           )}
 
+          {part.type === 'multi-field' && part.fields && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-md)' }}>
+              {part.fields.map((field) => (
+                <div key={field.fieldId} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <label style={{ fontWeight: 500, fontSize: '0.95rem' }}>
+                    {field.label}:
+                  </label>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <input
+                      type="text"
+                      value={answers[part.partId]?.[field.fieldId] || ''}
+                      onChange={(e) => {
+                        const newAnswers = { ...answers[part.partId], [field.fieldId]: e.target.value };
+                        handleAnswerChange(part.partId, newAnswers);
+                      }}
+                      placeholder={field.placeholder || 'Enter value...'}
+                      disabled={feedback[part.partId]?.correct}
+                      style={{ flex: 1 }}
+                    />
+                    {field.unit && <span style={{ color: 'var(--color-text-light)' }}>{field.unit}</span>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {part.type === 'explanation' && (
+            <div>
+              <textarea
+                value={answers[part.partId] || ''}
+                onChange={(e) => handleAnswerChange(part.partId, e.target.value)}
+                placeholder={part.validation?.keywords ? 
+                  "Explain your thinking... (What did they do wrong? Why?)" : 
+                  "Type your explanation here..."}
+                rows={3}
+                disabled={feedback[part.partId]?.correct}
+              />
+              {part.modelAnswer && feedback[part.partId]?.correct && (
+                <div style={{
+                  marginTop: 'var(--spacing-md)',
+                  padding: 'var(--spacing-md)',
+                  background: '#f0f9ff',
+                  borderRadius: 'var(--border-radius)',
+                  borderLeft: '4px solid #0ea5e9'
+                }}>
+                  <strong>Model explanation:</strong>
+                  <p style={{ marginTop: '0.5rem', marginBottom: 0 }}>{part.modelAnswer}</p>
+                  <p style={{ marginTop: '0.5rem', marginBottom: 0, fontStyle: 'italic', color: 'var(--color-text-light)' }}>
+                    Did your explanation cover these key ideas?
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
           {part.type === 'multiple-choice' && (
             <div className="options">
               {part.options?.map((option, idx) => (

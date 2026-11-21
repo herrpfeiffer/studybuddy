@@ -70,19 +70,63 @@ Hints should:
 - Break the problem into smaller steps
 - Remind of first principles without solving
 
-### 5. Accept Equivalent Formats
+### 5. Accept Equivalent Formats & Make Formats Visible
 
-**Rule**: Validation must accept all mathematically equivalent answers.
+**Rule**: Validation must accept all mathematically equivalent answers, AND the expected format must be visible up front.
 
-For probabilities:
+**For probabilities**:
 - Fractions: `1/4`, `3/12` (any equivalent fraction)
 - Decimals: `0.25`
 - Percents: `25%`
 
-For lists:
+**For lists**:
 - Any order
 - With or without spaces
 - Common separators (commas, newlines, spaces)
+
+**CRITICAL: Expected Format Must Be Visible**
+
+Every input must show its expected format through:
+- **Labeled fields** for multi-value questions
+- **Placeholders** showing example format
+- **Question text** explicitly stating format
+
+❌ **Bad** (hidden format):
+```json
+{
+  "question": "How many raw eggs are left? How many total eggs are left?",
+  "type": "text",
+  "hint": "raw left = 4 - 1 = ? Total left = 12 - 1 = ?"
+}
+```
+Problem: Student must guess "3, 11" or "3 raw, 11 total" or "raw left = 3, total left = 11"
+
+✅ **Good** (visible format via labeled fields):
+```json
+{
+  "question": "Fill in the blanks:",
+  "type": "multi-field",
+  "fields": [
+    {"fieldId": "raw-left", "label": "Raw eggs left", "correctAnswer": 3},
+    {"fieldId": "total-left", "label": "Total eggs left", "correctAnswer": 11}
+  ]
+}
+```
+Now the student sees exactly what to enter where.
+
+**Hints Must Match Input Format**
+
+If you use multi-field inputs, hints should guide the calculation without specifying a text format that doesn't match the UI.
+
+❌ **Bad** (hint shows text format, but UI has separate fields):
+```
+"hint": "Write it as: 3 raw, 11 total"
+```
+
+✅ **Good** (hint guides calculation for fields):
+```
+"hint": "You took out one raw egg. So: raw left = 4 - 1 = ? Total left = 12 - 1 = ?"
+```
 
 ### 6. Academic Integrity (No-AI Policy)
 
@@ -150,6 +194,37 @@ For each **reflection station**:
               },
               "hint": "Guides without revealing",
               "correctAnswer": "For reference only"
+            },
+            {
+              "partId": "part-2",
+              "question": "Fill in the values:",
+              "type": "multi-field",
+              "fields": [
+                {
+                  "fieldId": "value1",
+                  "label": "First value",
+                  "correctAnswer": 3,
+                  "placeholder": "number"
+                },
+                {
+                  "fieldId": "value2",
+                  "label": "Second value",
+                  "correctAnswer": 11,
+                  "placeholder": "number"
+                }
+              ],
+              "hint": "Guides calculation for each field"
+            },
+            {
+              "partId": "part-3",
+              "question": "Explain your reasoning:",
+              "type": "explanation",
+              "validation": {
+                "keywords": ["key", "concept", "words"],
+                "minLength": 20
+              },
+              "modelAnswer": "Shows good explanation after submit",
+              "hint": "What key idea should you mention?"
             }
           ],
           "enrichment": "Optional challenge"
@@ -159,6 +234,34 @@ For each **reflection station**:
   ]
 }
 ```
+
+### Answer Type Guide
+
+**When to use each type**:
+
+1. **`type: "numeric"`** - Single number answer
+   - Simple calculation with one result
+   - Example: "What is 2 + 2?"
+
+2. **`type: "text"`** - Written explanation or list
+   - Lists where order doesn't matter
+   - Explanations checked by keywords only
+   - Example: "List all outcomes: H1, H2, H3..."
+
+3. **`type: "multi-field"`** - Multiple labeled numeric/text values
+   - **Use this when asking for 2+ distinct values**
+   - Each field gets its own label and validation
+   - Per-field feedback shows which are right/wrong
+   - Example: "Raw eggs left: [ ] Total eggs left: [ ]"
+
+4. **`type: "explanation"`** - Written reasoning checked leniently
+   - Checked for key concepts, not exact wording
+   - Shows model answer after correct attempt
+   - Example: "Explain the student's mistake"
+
+5. **`type: "multiple-choice"`** - Pick one option
+   - Fixed set of choices
+   - Example: "Who is correct? A/B/Both/Neither"
 
 ## Anonymization
 

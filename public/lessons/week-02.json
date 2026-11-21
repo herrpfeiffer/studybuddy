@@ -113,13 +113,23 @@
             },
             {
               "partId": "second-raw-given-first",
-              "question": "Imagine the first egg WAS raw and you kept it out. Now how many raw eggs are LEFT? How many TOTAL eggs are left?",
-              "type": "text",
-              "validation": {
-                "keywords": ["3", "11"],
-                "minLength": 5
-              },
-              "correctAnswer": "3 raw eggs left, 11 total eggs left",
+              "question": "Imagine the first egg WAS raw and you kept it out. Fill in the blanks:",
+              "type": "multi-field",
+              "fields": [
+                {
+                  "fieldId": "raw-left",
+                  "label": "Raw eggs left",
+                  "correctAnswer": 3,
+                  "placeholder": "?"
+                },
+                {
+                  "fieldId": "total-left",
+                  "label": "Total eggs left",
+                  "correctAnswer": 11,
+                  "placeholder": "?"
+                }
+              ],
+              "correctAnswer": {"raw-left": 3, "total-left": 11},
               "hint": "You took out one raw egg. So: raw left = 4 - 1 = ? Total left = 12 - 1 = ?"
             },
             {
@@ -241,26 +251,63 @@
           "explainer": "SPOT THE MISTAKE STRATEGY:\n\nWhen checking someone else's work, ask:\n1. Did they identify the type correctly? (Independent or dependent?)\n2. If dependent (without replacement), did they adjust the counts?\n3. Did they multiply when they should?\n4. Are the numbers logical?\n\nFor 'without replacement' problems:\n- After the first draw, FEWER items are left\n- The probabilities CHANGE for the second draw\n\nCommon mistake: Using the same probability twice when items aren't replaced!",
           "parts": [
             {
-              "partId": "find-mistake",
-              "question": "Explain the student's mistake. What did they do wrong?",
-              "type": "text",
+              "partId": "find-counts",
+              "question": "After drawing one red marble and KEEPING it, fill in the correct counts:",
+              "type": "multi-field",
+              "fields": [
+                {
+                  "fieldId": "red-left",
+                  "label": "Red marbles left",
+                  "correctAnswer": 4,
+                  "placeholder": "?"
+                },
+                {
+                  "fieldId": "total-left",
+                  "label": "Total marbles left",
+                  "correctAnswer": 14,
+                  "placeholder": "?"
+                }
+              ],
+              "correctAnswer": {"red-left": 4, "total-left": 14},
+              "hint": "Started with 5 red out of 15 total. After removing one red marble: red left = 5 - 1 = ? Total left = 15 - 1 = ?"
+            },
+            {
+              "partId": "explain-mistake",
+              "question": "Now explain the student's mistake:",
+              "type": "explanation",
               "validation": {
-                "keywords": ["without replacement", "second", "4", "14", "dependent"],
+                "keywords": ["without replacement", "second", "4", "14", "dependent", "changed", "forgot"],
                 "minLength": 20
               },
-              "correctAnswer": "The student used 5/15 for the second draw, but without replacement, there are only 4 red marbles left out of 14 total after the first draw. They treated it like independent events when they're actually dependent.",
-              "hint": "After the first red marble is drawn and KEPT, how many red marbles are left? How many total marbles are left?"
+              "modelAnswer": "The student used 5/15 for both draws, but without replacement, the second draw has different counts. After removing one red marble, there are only 4 red left out of 14 total. They forgot to adjust the counts for the second draw.",
+              "hint": "What counts should the student have used for the SECOND draw? Did they treat it like independent or dependent events?"
             },
             {
               "partId": "correct-answer",
-              "question": "What is the CORRECT probability? Show your work:",
-              "type": "text",
-              "validation": {
-                "keywords": ["20/210", "2/21"],
-                "minLength": 3
-              },
-              "correctAnswer": "(5/15) × (4/14) = 20/210 = 2/21",
-              "hint": "First draw: 5/15. Second draw (after one red is gone): 4/14. Now multiply them."
+              "question": "Calculate the CORRECT probability. Show your work by filling in the multiplication:",
+              "type": "multi-field",
+              "fields": [
+                {
+                  "fieldId": "first-prob",
+                  "label": "P(first red)",
+                  "correctAnswer": "5/15",
+                  "placeholder": "fraction"
+                },
+                {
+                  "fieldId": "second-prob",
+                  "label": "P(second red | first was red)",
+                  "correctAnswer": "4/14",
+                  "placeholder": "fraction"
+                },
+                {
+                  "fieldId": "final-answer",
+                  "label": "Final answer (simplified if possible)",
+                  "correctAnswer": "2/21",
+                  "placeholder": "fraction"
+                }
+              ],
+              "correctAnswer": {"first-prob": "5/15", "second-prob": "4/14", "final-answer": "2/21"},
+              "hint": "First draw: how many red out of how many total? Second draw (after one red is gone): how many red left out of how many total left? Multiply, then simplify."
             }
           ],
           "enrichment": "Create your own 'spot the mistake' problem where someone forgets to adjust for dependent events!"

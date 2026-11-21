@@ -26,16 +26,26 @@ export interface Problem {
   enrichment?: string;
 }
 
+export interface MultiField {
+  fieldId: string;
+  label: string;
+  correctAnswer: number | string;
+  placeholder?: string;
+  unit?: string;
+}
+
 export interface ProblemPart {
   partId: string;
   question: string;
-  type: 'text' | 'numeric' | 'multiple-choice';
+  type: 'text' | 'numeric' | 'multiple-choice' | 'multi-field' | 'explanation';
   correctAnswer?: any;
   options?: string[];
+  fields?: MultiField[];
   validation?: Validation;
   hint?: string;
   explanation?: string;
   optional?: boolean;
+  modelAnswer?: string;
 }
 
 export interface Validation {
