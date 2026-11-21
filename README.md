@@ -1,6 +1,6 @@
 # Weekly Learning Studio
 
-An interactive ~30-minute weekly learning app for 7th grade students, covering Math, English, STEM, Science, and Band. The app provides practice and enrichment activities with answer validation, hints, and concept mastery tracking.
+An interactive ~30-minute weekly learning app for middle school students, covering Math, English, STEM, Science, and Band. The app provides practice and enrichment activities with answer validation, hints, and concept mastery tracking.
 
 **🎯 Academic Integrity**: This app is designed for **practice and enrichment only** — never framed as homework to submit to school.
 
@@ -68,7 +68,7 @@ Lessons are stored as JSON files in `public/lessons/`. Each lesson follows this 
 {
   "weekId": "week-01",
   "title": "Week 1: Properties of Equality & Explorations",
-  "dateRange": "Sep 14–20, 2026",
+  "dateRange": "Week of September 14",
   "estimatedMinutes": 30,
   "stations": [...]
 }
@@ -137,9 +137,9 @@ Each station can have either **problems** (for interactive Q&A) or **content** (
   "partId": "who-correct",
   "question": "Who preserved equivalence?",
   "type": "multiple-choice",
-  "options": ["Marcus", "Carly", "Both", "Neither"],
+  "options": ["Student A", "Student B", "Both", "Neither"],
   "correctAnswer": 0,
-  "explanation": "Marcus preserved equivalence by subtracting 11 from BOTH sides."
+  "explanation": "Student A preserved equivalence by subtracting 11 from BOTH sides."
 }
 ```
 
@@ -209,7 +209,7 @@ weekly-learning-studio/
 ## 🎨 Design Philosophy
 
 - **Kid-Friendly**: Warm colors, encouraging language, emoji accents
-- **Not Babyish**: Sophisticated enough for 7th grade
+- **Age-Appropriate**: Sophisticated enough for middle school students
 - **Mobile-First**: Touch-friendly buttons, readable on small screens
 - **Progress-Oriented**: Clear visual feedback on completion
 - **Academically Honest**: Designed for learning, not cheating

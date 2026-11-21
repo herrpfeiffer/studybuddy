@@ -1,5 +1,37 @@
 import type { ProblemPart } from '../types/lesson';
 
+const parseFraction = (str: string): number | null => {
+  const cleaned = str.trim().replace(/\s+/g, '');
+  
+  if (cleaned.includes('/')) {
+    const [num, denom] = cleaned.split('/').map(x => parseFloat(x));
+    if (!isNaN(num) && !isNaN(denom) && denom !== 0) {
+      return num / denom;
+    }
+  }
+  
+  if (cleaned.endsWith('%')) {
+    const num = parseFloat(cleaned.slice(0, -1));
+    if (!isNaN(num)) {
+      return num / 100;
+    }
+  }
+  
+  const num = parseFloat(cleaned);
+  return isNaN(num) ? null : num;
+};
+
+const checkEquivalentAnswer = (userAnswer: string, acceptedAnswers: string[]): boolean => {
+  const userValue = parseFraction(userAnswer);
+  if (userValue === null) return false;
+  
+  return acceptedAnswers.some(accepted => {
+    const acceptedValue = parseFraction(accepted);
+    if (acceptedValue === null) return false;
+    return Math.abs(userValue - acceptedValue) < 0.0001;
+  });
+};
+
 export const validateAnswer = (part: ProblemPart, answer: any): { correct: boolean; feedback: string } => {
   if ((answer === null || answer === undefined || answer === '') || (typeof answer === 'string' && answer.trim() === '')) {
     return { correct: false, feedback: 'Please provide an answer.' };
@@ -43,9 +75,18 @@ export const validateAnswer = (part: ProblemPart, answer: any): { correct: boole
       }
       
       if (validation?.keywords) {
-        const hasKeywords = validation.keywords.some(keyword => 
-          textAnswer.includes(keyword.toLowerCase())
+        const containsFractionOrNumber = validation.keywords.some(kw => 
+          kw.includes('/') || kw.includes('%') || !isNaN(parseFloat(kw))
         );
+        
+        let hasKeywords: boolean;
+        if (containsFractionOrNumber) {
+          hasKeywords = checkEquivalentAnswer(answer, validation.keywords);
+        } else {
+          hasKeywords = validation.keywords.some(keyword => 
+            textAnswer.includes(keyword.toLowerCase())
+          );
+        }
         
         if (!hasKeywords) {
           return {

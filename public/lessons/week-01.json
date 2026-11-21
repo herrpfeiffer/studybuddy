@@ -156,23 +156,23 @@
           "id": "math-4",
           "tier": 2,
           "type": "error-analysis",
-          "prompt": "Jamie and Sam each start with the same true equation: y + 11 = 20\n\n- **Jamie** subtracts 11 from both sides.\n- **Sam** subtracts 11 from the left and subtracts 9 from the right \"to make the right side nicer.\"",
+          "prompt": "Student A and Student B each start with the same true equation: y + 11 = 20\n\n- **Student A** subtracts 11 from both sides.\n- **Student B** subtracts 11 from the left and subtracts 9 from the right \"to make the right side nicer.\"",
           "parts": [
             {
               "partId": "who-correct",
               "question": "Who preserved equivalence?",
               "type": "multiple-choice",
-              "options": ["Jamie", "Sam", "Both", "Neither"],
+              "options": ["Student A", "Student B", "Both", "Neither"],
               "correctAnswer": 0,
-              "explanation": "Jamie preserved equivalence by subtracting 11 from BOTH sides."
+              "explanation": "Student A preserved equivalence by subtracting 11 from BOTH sides."
             },
             {
               "partId": "who-broke",
               "question": "Who broke equivalence?",
               "type": "multiple-choice",
-              "options": ["Jamie", "Sam", "Both", "Neither"],
+              "options": ["Student A", "Student B", "Both", "Neither"],
               "correctAnswer": 1,
-              "explanation": "Sam broke equivalence by subtracting different amounts from each side (11 left, 9 right)."
+              "explanation": "Student B broke equivalence by subtracting different amounts from each side (11 left, 9 right)."
             },
             {
               "partId": "fix",
