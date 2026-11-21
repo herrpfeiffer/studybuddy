@@ -27,9 +27,10 @@ function App() {
   const loadLessons = async () => {
     try {
       const lessonFiles = ['week-01.json', 'week-02.json'];
+      const baseUrl = import.meta.env.BASE_URL || '/';
       const loadedLessons = await Promise.all(
         lessonFiles.map(async (file) => {
-          const response = await fetch(`/lessons/${file}`);
+          const response = await fetch(`${baseUrl}lessons/${file}`);
           if (!response.ok) throw new Error(`Failed to load ${file}`);
           return response.json();
         })
