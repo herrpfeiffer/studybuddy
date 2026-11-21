@@ -1,0 +1,454 @@
+{
+  "weekId": "week-02",
+  "title": "Week 2: Compound Probability & Reviews",
+  "dateRange": "Week of November 23, 2026",
+  "estimatedMinutes": 28,
+  "stations": [
+    {
+      "id": "math",
+      "title": "Math: Compound Probability",
+      "subject": "Math",
+      "conceptTags": ["compound-probability", "sample-space", "independent-events", "dependent-events", "at-least-one", "probability-conversions"],
+      "estimatedMinutes": 12,
+      "problems": [
+        {
+          "id": "math-1",
+          "tier": 1,
+          "type": "sample-space",
+          "prompt": "You flip a coin and roll a standard 6-sided die.\n\n**Part 1:** List the complete sample space (all possible outcomes).\n\n**Part 2:** What is the probability of getting heads and an even number?",
+          "parts": [
+            {
+              "partId": "list-outcomes",
+              "question": "List all possible outcomes (e.g., H1, H2, ...):",
+              "type": "text",
+              "validation": {
+                "keywords": ["H1", "H2", "H3", "H4", "H5", "H6", "T1", "T2", "T3", "T4", "T5", "T6"],
+                "minLength": 30
+              },
+              "hint": "Start with heads: H1, H2, H3... then tails: T1, T2, T3...",
+              "correctAnswer": "H1, H2, H3, H4, H5, H6, T1, T2, T3, T4, T5, T6"
+            },
+            {
+              "partId": "count-total",
+              "question": "How many total outcomes are in the sample space?",
+              "type": "numeric",
+              "correctAnswer": 12,
+              "hint": "Count all the outcomes you listed."
+            },
+            {
+              "partId": "probability",
+              "question": "What is the probability of getting heads AND an even number? (Give your answer as a fraction like 3/12)",
+              "type": "text",
+              "validation": {
+                "keywords": ["1/4", "3/12", "0.25", "25%"],
+                "minLength": 2
+              },
+              "correctAnswer": "3/12 or 1/4 or 0.25 or 25%",
+              "hint": "Count favorable outcomes (H2, H4, H6) and divide by total outcomes."
+            }
+          ],
+          "enrichment": "Challenge: What's the probability of getting tails OR a number greater than 4?"
+        },
+        {
+          "id": "math-2",
+          "tier": 1,
+          "type": "independent-events",
+          "prompt": "You roll a die twice. The first roll doesn't change what happens on the second roll — these are **independent events**.\n\n**When to multiply probabilities:** For independent events, multiply P(first) × P(second).",
+          "parts": [
+            {
+              "partId": "first-roll",
+              "question": "What is the probability of rolling a 6 on the first roll?",
+              "type": "text",
+              "validation": {
+                "keywords": ["1/6"],
+                "minLength": 2
+              },
+              "correctAnswer": "1/6"
+            },
+            {
+              "partId": "second-roll",
+              "question": "What is the probability of rolling a 6 on the second roll?",
+              "type": "text",
+              "validation": {
+                "keywords": ["1/6"],
+                "minLength": 2
+              },
+              "correctAnswer": "1/6"
+            },
+            {
+              "partId": "multiply",
+              "question": "Multiply these probabilities to find P(6 on first AND 6 on second). Give your answer as a fraction:",
+              "type": "text",
+              "validation": {
+                "keywords": ["1/36"],
+                "minLength": 2
+              },
+              "correctAnswer": "1/36",
+              "hint": "Multiply the numerators: 1 × 1. Multiply the denominators: 6 × 6."
+            }
+          ],
+          "enrichment": "Challenge: What's the probability of rolling a 5 and then a 3?"
+        },
+        {
+          "id": "math-3",
+          "tier": 2,
+          "type": "dependent-events",
+          "prompt": "A carton has 4 raw eggs and 8 hard-boiled eggs (12 total). You draw one egg, then draw another **without replacement**.\n\nWithout replacement means the first draw changes what's left for the second draw — these are **dependent events**.",
+          "parts": [
+            {
+              "partId": "first-raw",
+              "question": "What is the probability the first egg is raw?",
+              "type": "text",
+              "validation": {
+                "keywords": ["4/12", "1/3"],
+                "minLength": 2
+              },
+              "correctAnswer": "4/12 or 1/3",
+              "hint": "There are 4 raw eggs out of 12 total."
+            },
+            {
+              "partId": "second-raw-given-first",
+              "question": "If the first egg was raw, how many raw eggs are left? How many total eggs are left?",
+              "type": "text",
+              "validation": {
+                "keywords": ["3", "11"],
+                "minLength": 5
+              },
+              "correctAnswer": "3 raw eggs left, 11 total eggs left",
+              "hint": "One raw egg is gone, so 4 - 1 = 3 raw. Total is 12 - 1 = 11."
+            },
+            {
+              "partId": "second-raw-probability",
+              "question": "Given the first was raw, what is the probability the second is also raw?",
+              "type": "text",
+              "validation": {
+                "keywords": ["3/11"],
+                "minLength": 2
+              },
+              "correctAnswer": "3/11"
+            },
+            {
+              "partId": "both-raw",
+              "question": "Multiply to find P(first raw AND second raw). Give your answer as a fraction:",
+              "type": "text",
+              "validation": {
+                "keywords": ["12/132", "1/11"],
+                "minLength": 2
+              },
+              "correctAnswer": "4/12 × 3/11 = 12/132 = 1/11",
+              "hint": "Multiply (4/12) × (3/11). Simplify if you can!"
+            }
+          ],
+          "enrichment": "Challenge: What if you drew 3 eggs without replacement — what's the probability all 3 are raw?"
+        },
+        {
+          "id": "math-4",
+          "tier": 2,
+          "type": "at-least-one",
+          "prompt": "You flip a coin 3 times. What is the probability of getting **at least one heads**?\n\n**Trick:** 'At least one' is easier with: P(at least one heads) = 1 - P(no heads at all).",
+          "parts": [
+            {
+              "partId": "no-heads",
+              "question": "What does 'no heads at all' mean?",
+              "type": "text",
+              "validation": {
+                "keywords": ["all tails", "tails", "TTT"],
+                "minLength": 5
+              },
+              "correctAnswer": "All tails (TTT)",
+              "hint": "If you don't get any heads, you get..."
+            },
+            {
+              "partId": "p-no-heads",
+              "question": "What is P(all tails in 3 flips)? Remember, multiply for independent events:",
+              "type": "text",
+              "validation": {
+                "keywords": ["1/8"],
+                "minLength": 2
+              },
+              "correctAnswer": "1/8",
+              "hint": "P(T) = 1/2 for each flip. Multiply: (1/2) × (1/2) × (1/2)."
+            },
+            {
+              "partId": "p-at-least-one",
+              "question": "Calculate P(at least one heads) = 1 - P(no heads). Give your answer as a fraction:",
+              "type": "text",
+              "validation": {
+                "keywords": ["7/8"],
+                "minLength": 2
+              },
+              "correctAnswer": "7/8",
+              "hint": "1 - 1/8 = 8/8 - 1/8 = ?"
+            }
+          ],
+          "enrichment": "Challenge: What's the probability of getting at least one 6 when rolling a die twice?"
+        },
+        {
+          "id": "math-5",
+          "tier": 1,
+          "type": "conversions",
+          "prompt": "Practice converting between fractions, decimals, and percents **by hand** (no calculator!).",
+          "parts": [
+            {
+              "partId": "fraction-to-decimal",
+              "question": "Convert 3/4 to a decimal:",
+              "type": "text",
+              "validation": {
+                "keywords": ["0.75", ".75"],
+                "minLength": 2
+              },
+              "correctAnswer": "0.75",
+              "hint": "Divide 3 by 4."
+            },
+            {
+              "partId": "decimal-to-percent",
+              "question": "Convert 0.75 to a percent:",
+              "type": "text",
+              "validation": {
+                "keywords": ["75%", "75"],
+                "minLength": 2
+              },
+              "correctAnswer": "75%",
+              "hint": "Move the decimal point two places right and add %."
+            },
+            {
+              "partId": "percent-to-fraction",
+              "question": "Convert 40% to a fraction in simplest form:",
+              "type": "text",
+              "validation": {
+                "keywords": ["2/5", "4/10"],
+                "minLength": 2
+              },
+              "correctAnswer": "2/5 or 4/10",
+              "hint": "40% means 40/100. Can you simplify that?"
+            }
+          ],
+          "enrichment": "Practice more: 1/2, 1/5, 3/10 — convert each to decimal and percent!"
+        },
+        {
+          "id": "math-6",
+          "tier": 3,
+          "type": "spot-the-mistake",
+          "prompt": "**Spot the mistake:**\n\nProblem: A bag has 5 red marbles and 10 blue marbles. You draw one, keep it, then draw another. What's the probability both are red?\n\nStudent's work:\n- P(first red) = 5/15 = 1/3\n- P(second red) = 5/15 = 1/3\n- P(both red) = 1/3 × 1/3 = 1/9",
+          "parts": [
+            {
+              "partId": "find-mistake",
+              "question": "What mistake did the student make?",
+              "type": "text",
+              "validation": {
+                "keywords": ["without replacement", "second", "4", "14", "dependent"],
+                "minLength": 20
+              },
+              "correctAnswer": "The student used 5/15 for the second draw, but without replacement, there are only 4 red marbles left out of 14 total. The events are dependent, not independent.",
+              "hint": "After drawing one red marble, how many red marbles are left? How many total?"
+            },
+            {
+              "partId": "correct-answer",
+              "question": "What is the CORRECT probability of both red? Show your work as a fraction:",
+              "type": "text",
+              "validation": {
+                "keywords": ["20/210", "2/21"],
+                "minLength": 3
+              },
+              "correctAnswer": "(5/15) × (4/14) = 20/210 = 2/21",
+              "hint": "First draw: 5/15. Second draw (after removing one red): 4/14. Multiply them."
+            }
+          ],
+          "enrichment": "Create your own 'spot the mistake' problem with dependent events!"
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "title": "Science: Molecules & Bonds",
+      "subject": "Science",
+      "conceptTags": ["atoms", "molecules", "chemical-bonds", "ionic-bonds", "covalent-bonds", "crystals"],
+      "estimatedMinutes": 8,
+      "content": {
+        "type": "exploration",
+        "introduction": "Matter is made of atoms, but atoms rarely exist alone. They join together to form molecules and other structures through chemical bonds. Let's review!",
+        "prompts": [
+          {
+            "id": "science-1",
+            "question": "What's the difference between an atom and a molecule?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["atom", "molecule", "one", "two", "together", "bonded"],
+              "minLength": 25
+            },
+            "hint": "An atom is a single particle of an element. A molecule is...",
+            "correctAnswer": "An atom is the smallest unit of an element (like one oxygen). A molecule is two or more atoms bonded together (like O₂ or H₂O)."
+          },
+          {
+            "id": "science-2",
+            "question": "What is a chemical bond?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["atoms", "together", "electrons", "force", "holds"],
+              "minLength": 20
+            },
+            "hint": "Think about what keeps atoms connected to each other.",
+            "correctAnswer": "A chemical bond is a force that holds atoms together. It involves the interaction of electrons between atoms."
+          },
+          {
+            "id": "science-3",
+            "question": "Describe ionic bonds in your own words:",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["electrons", "transfer", "give", "take", "positive", "negative", "attract"],
+              "minLength": 25
+            },
+            "hint": "Think about electrons moving from one atom to another, creating charged particles that attract.",
+            "correctAnswer": "In ionic bonds, one atom gives up electrons to another atom. This creates a positive ion and a negative ion. The opposite charges attract and hold the atoms together."
+          },
+          {
+            "id": "science-4",
+            "question": "Describe covalent bonds in your own words:",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["electrons", "share", "sharing", "both"],
+              "minLength": 20
+            },
+            "hint": "Think about atoms working together with electrons.",
+            "correctAnswer": "In covalent bonds, atoms share electrons. Both atoms get to 'use' the shared electrons, which holds them together."
+          },
+          {
+            "id": "science-5",
+            "question": "Why do crystals have repeating patterns?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["atoms", "arrange", "pattern", "structure", "same", "repeating", "order"],
+              "minLength": 25
+            },
+            "hint": "Think about how atoms naturally organize themselves when they bond in large numbers.",
+            "correctAnswer": "Crystals have repeating patterns because atoms and molecules arrange themselves in an orderly, repeating structure. The same pattern of bonds repeats over and over, creating the crystal's regular shape."
+          },
+          {
+            "id": "science-6",
+            "question": "Explain one difference between ionic and covalent bonds:",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["ionic", "covalent", "electrons", "share", "transfer"],
+              "minLength": 25
+            },
+            "hint": "What happens to the electrons in each type?",
+            "correctAnswer": "Ionic bonds involve transferring electrons from one atom to another, while covalent bonds involve sharing electrons between atoms."
+          }
+        ],
+        "enrichment": "Draw a simple diagram showing 2 atoms with a covalent bond (shared electrons) and 2 ions with an ionic bond (transferred electrons attracting)."
+      }
+    },
+    {
+      "id": "social-studies",
+      "title": "Social Studies: Roots of Islam",
+      "subject": "Social Studies",
+      "conceptTags": ["islam", "muhammad", "mecca", "medina", "five-pillars", "quran", "world-religions"],
+      "estimatedMinutes": 6,
+      "content": {
+        "type": "reflection",
+        "introduction": "Let's review the origins and foundations of Islam with respect and historical accuracy.",
+        "prompts": [
+          {
+            "id": "social-1",
+            "question": "Where and approximately when did Islam begin?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["Arabia", "Mecca", "600", "610", "7th century"],
+              "minLength": 15
+            },
+            "hint": "Think about the Arabian Peninsula in the 7th century CE.",
+            "correctAnswer": "Islam began in Mecca, in the Arabian Peninsula, around 610 CE (early 7th century)."
+          },
+          {
+            "id": "social-2",
+            "question": "Who was Muhammad, and what role did he play in Islam?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["prophet", "messenger", "founded", "revelations", "God", "Allah"],
+              "minLength": 25
+            },
+            "hint": "Think about his role as a prophet and messenger.",
+            "correctAnswer": "Muhammad was a prophet and messenger who founded Islam. Muslims believe he received revelations from God (Allah) and shared these teachings."
+          },
+          {
+            "id": "social-3",
+            "question": "What is the significance of Mecca in Islam?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["birthplace", "Muhammad", "holy", "Kaaba", "pilgrimage"],
+              "minLength": 20
+            },
+            "hint": "Think about why Muslims pray toward Mecca and make pilgrimages there.",
+            "correctAnswer": "Mecca is Islam's holiest city. It's where Muhammad was born and where the Kaaba is located. Muslims face Mecca when they pray and make pilgrimages there."
+          },
+          {
+            "id": "social-4",
+            "question": "What is the significance of Medina in Islamic history?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["Muhammad", "migrated", "moved", "community", "emigration"],
+              "minLength": 20
+            },
+            "hint": "Think about where Muhammad went when he left Mecca.",
+            "correctAnswer": "Medina is where Muhammad migrated to (the Hijra/emigration) and where he established the first Muslim community."
+          },
+          {
+            "id": "social-5",
+            "question": "Name the Five Pillars of Islam and briefly explain what they are:",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["shahada", "prayer", "charity", "fasting", "pilgrimage", "five"],
+              "minLength": 40
+            },
+            "hint": "The Five Pillars are the core practices of Islam: faith, prayer, charity, fasting, and pilgrimage.",
+            "correctAnswer": "The Five Pillars are: 1) Shahada (declaration of faith), 2) Salat (daily prayers), 3) Zakat (charity to those in need), 4) Sawm (fasting during Ramadan), 5) Hajj (pilgrimage to Mecca if able)."
+          },
+          {
+            "id": "social-6",
+            "question": "What is the Qur'an?",
+            "type": "reflection",
+            "validation": {
+              "keywords": ["holy book", "scripture", "revelations", "Muhammad", "Allah", "God"],
+              "minLength": 20
+            },
+            "hint": "Think about the central religious text of Islam.",
+            "correctAnswer": "The Qur'an is the holy book of Islam. Muslims believe it contains the revelations that Muhammad received from Allah (God)."
+          }
+        ],
+        "enrichment": "Research one of the Five Pillars in more depth to understand its meaning and practice in Muslim communities today."
+      }
+    },
+    {
+      "id": "thanksgiving",
+      "title": "Thanksgiving Week Reflection",
+      "subject": "Reflection",
+      "conceptTags": ["gratitude", "reflection", "growth"],
+      "estimatedMinutes": 2,
+      "content": {
+        "type": "reflection",
+        "introduction": "This week is Thanksgiving! Take a moment to reflect on learning and growth.",
+        "prompts": [
+          {
+            "id": "thanksgiving-1",
+            "question": "What's one thing you learned recently (in school or outside) that you're grateful for?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 20
+            },
+            "hint": "It could be a new skill, an interesting fact, or a helpful strategy.",
+            "optional": true
+          },
+          {
+            "id": "thanksgiving-2",
+            "question": "What's one challenge you've worked through this fall that made you stronger or smarter?",
+            "type": "reflection",
+            "validation": {
+              "minLength": 20
+            },
+            "optional": true
+          }
+        ]
+      }
+    }
+  ]
+}

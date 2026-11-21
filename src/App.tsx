@@ -11,7 +11,7 @@ function App() {
   const [appState, setAppState] = useState<AppState>(loadState());
   const [lessons, setLessons] = useState<WeekLesson[]>([]);
   const [currentView, setCurrentView] = useState<'week' | 'station' | 'summary' | 'past'>('week');
-  const [currentWeekId, setCurrentWeekId] = useState<string>('week-01');
+  const [currentWeekId, setCurrentWeekId] = useState<string>('week-02');
   const [currentStationId, setCurrentStationId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -26,10 +26,15 @@ function App() {
 
   const loadLessons = async () => {
     try {
-      const response = await fetch('/lessons/week-01.json');
-      if (!response.ok) throw new Error('Failed to load lesson');
-      const lesson = await response.json();
-      setLessons([lesson]);
+      const lessonFiles = ['week-01.json', 'week-02.json'];
+      const loadedLessons = await Promise.all(
+        lessonFiles.map(async (file) => {
+          const response = await fetch(`/lessons/${file}`);
+          if (!response.ok) throw new Error(`Failed to load ${file}`);
+          return response.json();
+        })
+      );
+      setLessons(loadedLessons);
       setLoading(false);
     } catch (err) {
       setError('Failed to load lessons. Please refresh the page.');
@@ -169,11 +174,57 @@ function App() {
 
       <main>
         {currentView === 'week' && (
-          <WeekView
-            lesson={currentLesson}
-            weekProgress={getWeekProgress()}
-            onStationSelect={handleStationSelect}
-          />
+          <>
+            {lessons.length > 1 && (
+              <div className="card" style={{ marginBottom: 'var(--spacing-lg)' }}>
+                <div style={{ 
+                  display: 'flex', 
+                  justifyContent: 'space-between', 
+                  alignItems: 'center',
+                  gap: 'var(--spacing-md)'
+                }}>
+                  <button 
+                    className="btn"
+                    onClick={() => {
+                      const currentIndex = lessons.findIndex(l => l.weekId === currentWeekId);
+                      if (currentIndex > 0) {
+                        setCurrentWeekId(lessons[currentIndex - 1].weekId);
+                      }
+                    }}
+                    disabled={lessons.findIndex(l => l.weekId === currentWeekId) === 0}
+                    style={{ flex: '0 0 auto' }}
+                  >
+                    ← Previous Week
+                  </button>
+                  <div style={{ 
+                    textAlign: 'center',
+                    fontSize: '0.9rem',
+                    color: 'var(--color-text-light)'
+                  }}>
+                    Week {lessons.findIndex(l => l.weekId === currentWeekId) + 1} of {lessons.length}
+                  </div>
+                  <button 
+                    className="btn"
+                    onClick={() => {
+                      const currentIndex = lessons.findIndex(l => l.weekId === currentWeekId);
+                      if (currentIndex < lessons.length - 1) {
+                        setCurrentWeekId(lessons[currentIndex + 1].weekId);
+                      }
+                    }}
+                    disabled={lessons.findIndex(l => l.weekId === currentWeekId) === lessons.length - 1}
+                    style={{ flex: '0 0 auto' }}
+                  >
+                    Next Week →
+                  </button>
+                </div>
+              </div>
+            )}
+            <WeekView
+              lesson={currentLesson}
+              weekProgress={getWeekProgress()}
+              onStationSelect={handleStationSelect}
+            />
+          </>
         )}
 
         {currentView === 'station' && currentStationId && (
