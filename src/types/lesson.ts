@@ -21,6 +21,7 @@ export interface Problem {
   tier: number;
   type: string;
   prompt: string;
+  explainer?: string;
   parts: ProblemPart[];
   enrichment?: string;
 }
@@ -56,8 +57,10 @@ export interface ContentPrompt {
   id: string;
   question: string;
   type: 'reflection' | 'text';
+  explainer?: string;
   validation?: Validation;
   hint?: string;
+  correctAnswer?: string;
   optional?: boolean;
 }
 

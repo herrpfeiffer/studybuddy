@@ -16,6 +16,7 @@
           "tier": 1,
           "type": "equality-reasoning",
           "prompt": "Two equations are written on the board:\n\n**Equation A:** x + 7 = 12\n\n**Equation B:** x + 7 - 7 = 12 - 7\n\nA student claims Equation B is \"a different problem\" because the numbers look different.\n\n**Part 1:** Are A and B equivalent? Explain your reasoning without solving for x first.\n\n**Part 2:** Find x and check by substitution in BOTH equations.",
+          "explainer": "WHAT ARE EQUIVALENT EQUATIONS?\nEquivalent equations are equations that have the SAME solution (same value for the variable).\n\nTHE GOLDEN RULE:\nIf you do the SAME operation to BOTH sides of an equation, you get an equivalent equation!\n\nEXAMPLE (different from the question):\nStart with: y + 5 = 9\nSubtract 3 from BOTH sides: y + 5 - 3 = 9 - 3\nSimplify: y + 2 = 6\n\nThese are equivalent! If y = 4, BOTH equations are true.\nCheck: 4 + 5 = 9 ✓ and 4 + 2 = 6 ✓\n\nNow try the x problem!",
           "parts": [
             {
               "partId": "reasoning",
@@ -97,6 +98,7 @@
           "tier": 2,
           "type": "balance-scale",
           "prompt": "A balance scale is even with \"mystery bag m\" plus 5 unit weights on the left, and 18 unit weights on the right.\n\nSomeone removes 5 unit weights from the **left only**.",
+          "explainer": "BALANCE SCALE = EQUATION:\nA balanced scale is like an equation with an equals sign. Both sides have the same weight (or value).\n\nTHE RULE:\nTo KEEP it balanced, you must do the SAME thing to BOTH sides.\n\nEXAMPLE:\nScale: [bag + 3 weights] = [10 weights]\nEquation: b + 3 = 10\n\nIf you remove 3 from the LEFT only → scale tips!\nBut if you remove 3 from BOTH sides → still balanced!\n(b + 3 - 3) = (10 - 3)\nb = 7\n\nAlways change BOTH sides equally!",
           "parts": [
             {
               "partId": "balanced",
