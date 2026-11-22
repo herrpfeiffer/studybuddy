@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { validateAnswer, evaluateEquation } from './validation';
-import type { ProblemPart, MultiField } from '../types/lesson';
+import type { ProblemPart } from '../types/lesson';
 
 describe('validateAnswer', () => {
   describe('numeric validation', () => {
