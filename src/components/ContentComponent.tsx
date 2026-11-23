@@ -8,6 +8,7 @@ interface ContentComponentProps {
   stationId: string;
   conceptTags: string[];
   onComplete: (progress: UserProgress[]) => void;
+  previewMode?: boolean;
 }
 
 const ContentComponent = ({ 
@@ -16,7 +17,8 @@ const ContentComponent = ({
   weekId, 
   stationId, 
   conceptTags, 
-  onComplete 
+  onComplete,
+  previewMode: _previewMode
 }: ContentComponentProps) => {
   const [answer, setAnswer] = useState('');
   const [showHint, setShowHint] = useState(false);
