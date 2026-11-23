@@ -4,6 +4,7 @@ interface WeekViewProps {
   lesson: WeekLesson;
   weekProgress?: WeekProgress;
   onStationSelect: (stationId: string) => void;
+  previewMode?: boolean;
 }
 
 const WeekView = ({ lesson, weekProgress, onStationSelect }: WeekViewProps) => {

@@ -49,6 +49,7 @@ npm run preview
 - **Review Suggestions**: See which concepts need additional practice
 - **Export/Import**: Backup progress data or transfer between devices
 - **Academic Integrity Note**: Built-in reminders about proper use
+- **Preview Mode**: Review all content and answers without completing activities (see below)
 
 ## 📖 How to Use
 
@@ -57,6 +58,53 @@ npm run preview
 3. **Track Progress**: Watch your progress bar grow as you complete stations
 4. **Review Past Weeks**: Go back to previous weeks to review concepts
 5. **Check Progress Report**: Parents and tutors can see detailed progress and mastery levels
+
+## 👁️ Preview Mode (For Parents/Tutors)
+
+Preview mode allows parents and tutors to review all lesson content and expected answers without completing activities. This is useful for understanding the material before the student begins, or reviewing content structure.
+
+### Enabling Preview Mode
+
+Add `?preview=1` to the URL:
+```
+https://herrpfeiffer.github.io/studybuddy/?preview=1
+```
+
+Or in development:
+```
+http://localhost:5173/?preview=1
+```
+
+### Preview Mode Features
+
+When preview mode is active, you'll see:
+- **Yellow banner** at the top: "👁️ Preview Mode: All content unlocked"
+- **Exit Preview button**: Click to return to normal mode
+- **Previous/Next buttons**: Jump between problems within a station
+- **Show Answers toggle**: View expected answers and model explanations for each problem
+
+### What's Unlocked
+
+- ✅ All weeks accessible (Previous/Next week navigation)
+- ✅ All stations accessible
+- ✅ All problems within stations
+- ✅ Expected answers visible via toggle
+- ✅ Model answers for explanation questions
+- ✅ Normal answer checking still works (you can test validation)
+
+### Disabling Preview Mode
+
+**Option 1**: Click "Exit Preview" button in the banner
+
+**Option 2**: Add `?preview=0` to the URL
+
+**Option 3**: Clear localStorage: `localStorage.removeItem('weekly-learning-studio-preview-mode')`
+
+Preview mode persists across page reloads and navigation (stored in browser localStorage).
+
+### Note
+
+Preview mode is a **convenience feature**, not a security feature. It's designed for parents/tutors to review content on a static educational site. Normal student progress tracking continues to work separately.
 
 ## 🗂 Lesson Data Schema
 

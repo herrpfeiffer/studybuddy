@@ -8,14 +8,16 @@ interface ProblemComponentProps {
   stationId: string;
   conceptTags: string[];
   onComplete: (progress: UserProgress[]) => void;
+  previewMode?: boolean;
 }
 
-const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete }: ProblemComponentProps) => {
+const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete, previewMode }: ProblemComponentProps) => {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [feedback, setFeedback] = useState<Record<string, { correct: boolean; message: string }>>({});
   const [attempts, setAttempts] = useState<Record<string, number>>({});
   const [showHints, setShowHints] = useState<Record<string, boolean>>({});
   const [showExplainer, setShowExplainer] = useState(false);
+  const [showAnswers, setShowAnswers] = useState(false);
 
   const handleAnswerChange = (partId: string, value: any) => {
     setAnswers(prev => ({ ...prev, [partId]: value }));
@@ -104,6 +106,58 @@ const ProblemComponent = ({ problem, weekId, stationId, conceptTags, onComplete 
               whiteSpace: 'pre-line'
             }}>
               {problem.explainer}
+            </div>
+          )}
+        </div>
+      )}
+
+      {previewMode && (
+        <div style={{ marginTop: 'var(--spacing-md)', marginBottom: 'var(--spacing-lg)' }}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setShowAnswers(!showAnswers)}
+            style={{ 
+              fontSize: '0.9rem',
+              padding: '0.5rem 1rem',
+              background: showAnswers ? '#fef3c7' : '#f3f4f6',
+              color: showAnswers ? '#92400e' : '#6b7280',
+              border: '1px solid #d1d5db'
+            }}
+          >
+            {showAnswers ? '👁️ Hide Answers' : '👁️ Show Answers'}
+          </button>
+          {showAnswers && (
+            <div style={{
+              marginTop: 'var(--spacing-md)',
+              padding: 'var(--spacing-md)',
+              background: '#fffbeb',
+              borderRadius: 'var(--border-radius)',
+              borderLeft: '4px solid #f59e0b',
+              fontSize: '0.95rem',
+            }}>
+              <strong>Expected Answers:</strong>
+              <ul style={{ marginTop: '0.5rem', marginBottom: 0, paddingLeft: '1.5rem' }}>
+                {problem.parts.map(part => (
+                  <li key={part.partId} style={{ marginTop: '0.5rem' }}>
+                    <strong>{part.question}</strong><br/>
+                    {part.type === 'multi-field' && part.fields ? (
+                      <div style={{ marginTop: '0.25rem', paddingLeft: '1rem' }}>
+                        {part.fields.map(field => (
+                          <div key={field.fieldId}>
+                            {field.label}: <code>{field.correctAnswer}</code>
+                          </div>
+                        ))}
+                      </div>
+                    ) : part.type === 'explanation' ? (
+                      <div style={{ marginTop: '0.25rem', fontStyle: 'italic' }}>
+                        {part.modelAnswer || 'Model answer: ' + part.correctAnswer}
+                      </div>
+                    ) : (
+                      <code>{String(part.correctAnswer)}</code>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </div>

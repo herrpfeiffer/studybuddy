@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import type { WeekLesson, AppState, UserProgress, WeekProgress } from './types/lesson';
 import { loadState, saveState, updateConceptMastery } from './utils/storage';
+import { initializePreviewMode, disablePreviewMode } from './utils/previewMode';
 import WeekView from './components/WeekView';
 import StationView from './components/StationView';
 import SummaryPanel from './components/SummaryPanel';
@@ -15,8 +16,11 @@ function App() {
   const [currentStationId, setCurrentStationId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [previewMode, setPreviewMode] = useState<boolean>(false);
 
   useEffect(() => {
+    const isPreview = initializePreviewMode();
+    setPreviewMode(isPreview);
     loadLessons();
   }, []);
 
@@ -114,6 +118,12 @@ function App() {
     return appState.weeks.find(w => w.weekId === currentWeekId);
   };
 
+  const handleExitPreview = () => {
+    disablePreviewMode();
+    setPreviewMode(false);
+    window.location.reload();
+  };
+
   if (loading) {
     return (
       <div className="app">
@@ -141,6 +151,45 @@ function App() {
 
   return (
     <div className="app">
+      {previewMode && (
+        <div style={{
+          background: '#fef3c7',
+          borderBottom: '2px solid #f59e0b',
+          padding: '0.75rem 1rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          gap: '1rem',
+          position: 'sticky',
+          top: 0,
+          zIndex: 1000,
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            fontWeight: 600,
+            color: '#92400e',
+          }}>
+            <span>👁️</span>
+            <span>Preview Mode: All content unlocked</span>
+          </div>
+          <button
+            onClick={handleExitPreview}
+            style={{
+              background: '#f59e0b',
+              color: 'white',
+              border: 'none',
+              padding: '0.5rem 1rem',
+              borderRadius: '0.375rem',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
+            Exit Preview
+          </button>
+        </div>
+      )}
       <header className="header">
         <h1>
           <span>📚</span>
@@ -224,6 +273,7 @@ function App() {
               lesson={currentLesson}
               weekProgress={getWeekProgress()}
               onStationSelect={handleStationSelect}
+              previewMode={previewMode}
             />
           </>
         )}
@@ -234,6 +284,7 @@ function App() {
             weekId={currentWeekId}
             onComplete={handleStationComplete}
             onBack={handleBackToWeek}
+            previewMode={previewMode}
           />
         )}
 

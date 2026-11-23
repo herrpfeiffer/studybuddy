@@ -8,9 +8,10 @@ interface StationViewProps {
   weekId: string;
   onComplete: (stationId: string, progress: UserProgress[]) => void;
   onBack: () => void;
+  previewMode?: boolean;
 }
 
-const StationView = ({ station, weekId, onComplete, onBack }: StationViewProps) => {
+const StationView = ({ station, weekId, onComplete, onBack, previewMode }: StationViewProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState<UserProgress[]>([]);
   const [showEnrichment, setShowEnrichment] = useState(false);
@@ -70,6 +71,25 @@ const StationView = ({ station, weekId, onComplete, onBack }: StationViewProps) 
         </p>
       </div>
 
+      {previewMode && !showEnrichment && (
+        <div style={{ marginTop: 'var(--spacing-md)', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setCurrentIndex(Math.max(0, currentIndex - 1))}
+            disabled={currentIndex === 0}
+          >
+            ← Previous
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setCurrentIndex(Math.min(totalItems - 1, currentIndex + 1))}
+            disabled={currentIndex === totalItems - 1}
+          >
+            Next →
+          </button>
+        </div>
+      )}
+
       {!showEnrichment && hasProblems && station.problems && (
         <ProblemComponent
           problem={station.problems[currentIndex]}
@@ -77,6 +97,7 @@ const StationView = ({ station, weekId, onComplete, onBack }: StationViewProps) 
           stationId={station.id}
           conceptTags={station.conceptTags}
           onComplete={handleProblemComplete}
+          previewMode={previewMode}
         />
       )}
 
@@ -88,6 +109,7 @@ const StationView = ({ station, weekId, onComplete, onBack }: StationViewProps) 
           stationId={station.id}
           conceptTags={station.conceptTags}
           onComplete={handleContentComplete}
+          previewMode={previewMode}
         />
       )}
 
