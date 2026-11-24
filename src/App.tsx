@@ -121,7 +121,11 @@ function App() {
   const handleExitPreview = () => {
     disablePreviewMode();
     setPreviewMode(false);
-    window.location.reload();
+    
+    // Remove preview param from URL
+    const url = new URL(window.location.href);
+    url.searchParams.delete('preview');
+    window.history.replaceState({}, '', url.pathname + url.search + url.hash);
   };
 
   if (loading) {

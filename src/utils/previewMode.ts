@@ -5,16 +5,25 @@ export const initializePreviewMode = (): boolean => {
   const params = new URLSearchParams(window.location.search);
   const previewParam = params.get('preview');
   
+  let result: boolean;
+  
   if (previewParam === '1') {
     localStorage.setItem(PREVIEW_MODE_KEY, 'true');
-    return true;
+    result = true;
   } else if (previewParam === '0') {
     localStorage.removeItem(PREVIEW_MODE_KEY);
-    return false;
+    result = false;
+  } else {
+    // Fall back to localStorage
+    result = localStorage.getItem(PREVIEW_MODE_KEY) === 'true';
   }
   
-  // Fall back to localStorage
-  return localStorage.getItem(PREVIEW_MODE_KEY) === 'true';
+  // Strip preview param from URL after reading it
+  if (previewParam !== null) {
+    removePreviewParamFromUrl();
+  }
+  
+  return result;
 };
 
 export const isPreviewMode = (): boolean => {
@@ -27,4 +36,12 @@ export const enablePreviewMode = (): void => {
 
 export const disablePreviewMode = (): void => {
   localStorage.removeItem(PREVIEW_MODE_KEY);
+};
+
+export const removePreviewParamFromUrl = (): void => {
+  const url = new URL(window.location.href);
+  url.searchParams.delete('preview');
+  
+  // Use replaceState to update URL without page reload
+  window.history.replaceState({}, '', url.pathname + url.search + url.hash);
 };
